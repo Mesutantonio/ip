@@ -7,13 +7,21 @@ public class Conversal {
         String name = "Conversal";
         String greeting = "What can I do for you?";
         String exit = "Bye! Hope to see you again!";
-        String instruction = "To close chatbot, enter: bye. To display tasks list, enter: list.";
+        String instruction1 = "To close chatbot, enter: bye.";
+        String instruction2 = "To display tasks list, enter: list";
+        String instruction3 = "To mark task as Complete: mark (task no.)";
+        String instruction4 = "To mark task as Incomplete: unmark (task no.)";
 
         System.out.println("Hello! I'm " + name + ".");
         System.out.println(greeting + "\n");
-        System.out.println("Instructions: " + instruction + "\n");
+        System.out.println("Instructions: ");
+        System.out.println("> " + instruction1);
+        System.out.println("> " + instruction2);
+        System.out.println("> " + instruction3);
+        System.out.println("> " + instruction4);
+        System.out.println();
 
-        String[] tasks = new String[100];
+        Task[] tasks = new Task[100];
         int tasksCounter = 0;
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -30,12 +38,31 @@ public class Conversal {
                 // Print list when user types: list
                 System.out.println("\nHere is your list of tasks:");
                 for (int i = 0; i < tasksCounter; i++) {
-                    System.out.println((i + 1) + ". " + tasks[i]);
+                    String taskString = tasks[i].toString();
+                    System.out.println((i + 1) + ". " + taskString);
                 }
                 System.out.println();
 
+            } else if (input.startsWith("mark ")) {
+                // Marking tasks as complete
+                int index = Integer.parseInt(input.substring(5)) - 1;
+                tasks[index].markAsComplete();
+                String taskString = tasks[index].toString();
+
+                System.out.println("Nice! I've marked this task as complete:");
+                System.out.println(taskString + "\n");
+
+            } else if (input.startsWith("unmark ")) {
+                // Marking tasks as incomplete
+                int index = Integer.parseInt(input.substring(7)) - 1;
+                tasks[index].markAsIncomplete();
+                String taskString = tasks[index].toString();
+
+                System.out.println("OK! I've marked this task as incomplete:");
+                System.out.println(taskString + "\n");
+
             } else {
-                tasks[tasksCounter] = input;
+                tasks[tasksCounter] = new Task(input);
                 tasksCounter++;
                 // Echo tasks added
                 System.out.println("Task added: " + input + "\n");
