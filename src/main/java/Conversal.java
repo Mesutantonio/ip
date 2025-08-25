@@ -6,7 +6,7 @@ public class Conversal {
 
         String name = "Conversal";
         String greeting = "What can I do for you?";
-        String exit = "Bye! Hope to see you again!";
+        String exit = "Bye! Hope end see you again!";
         String instruction1 = "To close chatbot, enter: bye.";
         String instruction2 = "To display tasks list, enter: list";
         String instruction3 = "To mark task as Complete: mark (task no.)";
