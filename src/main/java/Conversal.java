@@ -102,9 +102,6 @@ public class Conversal {
                 // Echo tasks added
                 System.out.println("Task added: " + input + "\n");
             }
-
-            // Repeat user input
-            //System.out.println("Conversal: " + input + "\n");
         }
 
         System.out.println("\n" + exit);
