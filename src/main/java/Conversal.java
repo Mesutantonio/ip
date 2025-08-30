@@ -9,11 +9,11 @@ public class Conversal {
         String exit = "Bye! Hope end see you again!";
         String instruction1 = "To close chatbot, enter: bye.";
         String instruction2 = "To display tasks list, enter: list";
-        String instruction3 = "To mark task as Complete: mark (task no.)";
-        String instruction4 = "To mark task as Incomplete: unmark (task no.)";
-        String instructionTodo = "To add Todo task: todo (task)";
-        String instructionDeadline = "To add Deadline task: deadline (task) /by (date)";
-        String instructionEvent = "To add Event task: event (task) /from (start) /to (end)";
+        String instruction3 = "To mark task as Complete, enter: mark (task no.)";
+        String instruction4 = "To mark task as Incomplete, enter: unmark (task no.)";
+        String instructionTodo = "To add Todo task, enter: todo (task)";
+        String instructionDeadline = "To add Deadline task, enter: deadline (task) /by (date)";
+        String instructionEvent = "To add Event task, enter: event (task) /from (start) /to (end)";
 
 
         System.out.println("Hello! I'm " + name + ".");
@@ -37,70 +37,118 @@ public class Conversal {
             System.out.print("User: ");
             input = scanner.nextLine();
 
-            if (input.equals("bye")) {
-                // Exit when user types: bye
-                break;
+            try {
+                if (input.equals("bye")) {
+                    break;
 
-            } else if (input.equals("list")) {
-                // Print list when user types: list
-                System.out.println("\nHere is your list of tasks:");
-                for (int i = 0; i < tasksCounter; i++) {
-                    String taskString = tasks[i].toString();
-                    System.out.println((i + 1) + ". " + taskString);
+                } else if (input.equals("list")) {
+                    // Print list when user types: list
+                    System.out.println("\nHere is your list of tasks:");
+                    for (int i = 0; i < tasksCounter; i++) {
+                        String taskString = tasks[i].toString();
+                        System.out.println((i + 1) + ". " + taskString);
+                    }
+                    System.out.println();
+
+                } else if (input.startsWith("mark ")) {
+                    // Error handling
+                    if (input.length() <= 5) {
+                        throw new ConversalException("Ah, I got it! Include task's number to mark that task");
+                    }
+                    try {
+                        // Attempt to mark task as complete
+                        int index = Integer.parseInt(input.substring(5)) - 1;
+                        if (index < 0 || index >= tasksCounter) {
+                            throw new ConversalException("Please enter a valid task number between 1 and " + tasksCounter);
+                        }
+                        tasks[index].markAsComplete();
+                        String taskString = tasks[index].toString();
+                        System.out.println("Nice! I've marked this task as complete:");
+                        System.out.println(taskString + "\n");
+                    } catch (NumberFormatException e) {
+                        throw new ConversalException("Ah, I got it! Include task's number to mark that task");
+                    }
+
+                } else if (input.startsWith("unmark ")) {
+                    // Error handling
+                    if (input.length() <= 7) {
+                        throw new ConversalException("Ah, I got it! Include task's number to unmark that task");
+                    }
+                    try {
+                        // Attempt to mark task as incomplete
+                        int index = Integer.parseInt(input.substring(7)) - 1;
+                        if (index < 0 || index >= tasksCounter) {
+                            throw new ConversalException("Please enter a valid task number between 1 and " + tasksCounter);
+                        }
+                        tasks[index].markAsIncomplete();
+                        String taskString = tasks[index].toString();
+                        System.out.println("OK! I've marked this task as incomplete:");
+                        System.out.println(taskString + "\n");
+                    } catch (NumberFormatException e) {
+                        throw new ConversalException("Ah, I got it! Include task's number to unmark that task");
+                    }
+
+                } else if (input.startsWith("todo ")) {
+                    // Error handling
+                    if (input.length() <= 5) {
+                        throw new ConversalException("Ah, I got it! " + instructionTodo);
+                    }
+
+                    // Add a to-do task to list
+                    String description = input.substring(5);
+
+                    // Add to array and print message
+                    tasks[tasksCounter] = new Todo(description);
+                    addMessage(tasks[tasksCounter], tasksCounter + 1);
+                    tasksCounter++;
+
+                } else if (input.startsWith("deadline ")) {
+                    // Error handling
+                    if (input.length() <= 9) {
+                        throw new ConversalException("Ah, I got it! " + instructionDeadline);
+                    }
+                    if (!input.contains(" /by ")) {
+                        throw new ConversalException("Ah, I got it! " + instructionDeadline);
+                    }
+
+                    // Add a deadline task to list with error handling
+                    String[] info = input.substring(9).split(" /by ");
+                    if (info.length < 2 || info[0].trim().isEmpty() || info[1].trim().isEmpty()) {
+                        throw new ConversalException("Ah, I got it! " + instructionDeadline);
+                    }
+
+                    // Add to array and print message
+                    tasks[tasksCounter] = new Deadline(info[0], info[1]);
+                    addMessage(tasks[tasksCounter], tasksCounter + 1);
+                    tasksCounter++;
+
+                } else if (input.startsWith("event ")) {
+                    // Error handling
+                    if (input.length() <= 6) {
+                        throw new ConversalException("Ah, I got it! " + instructionEvent);
+                    }
+                    if (!input.contains(" /from ") || !input.contains(" /to ")) {
+                        throw new ConversalException("Ah, I got it! " + instructionEvent);
+                    }
+
+                    // Add an event task to list with error handling
+                    String[] info = input.substring(6).split(" /from | /to ");
+                    if (info.length < 3 || info[0].trim().isEmpty() || info[1].trim().isEmpty() || info[2].trim().isEmpty()) {
+                        throw new ConversalException("Ah, I got it! " + instructionEvent);
+                    }
+
+                    // Add to array and print message
+                    tasks[tasksCounter] = new Event(info[0], info[1], info[2]);
+                    addMessage(tasks[tasksCounter], tasksCounter + 1);
+                    tasksCounter++;
+
+                } else {
+                    // Error handling: Invalid command
+                    throw new ConversalException("I can't seem to locate the issue, please try again!");
                 }
-                System.out.println();
 
-            } else if (input.startsWith("mark ")) {
-                // Marking tasks as complete
-                int index = Integer.parseInt(input.substring(5)) - 1;
-                tasks[index].markAsComplete();
-                String taskString = tasks[index].toString();
-
-                System.out.println("Nice! I've marked this task as complete:");
-                System.out.println(taskString + "\n");
-
-            } else if (input.startsWith("unmark ")) {
-                // Marking tasks as incomplete
-                int index = Integer.parseInt(input.substring(7)) - 1;
-                tasks[index].markAsIncomplete();
-                String taskString = tasks[index].toString();
-
-                System.out.println("OK! I've marked this task as incomplete:");
-                System.out.println(taskString + "\n");
-
-            } else if (input.startsWith("todo ")) {
-                // Add a to-do task to list
-                String description = input.substring(5);
-                tasks[tasksCounter] = new Todo(description);
-
-                // Print message
-                addMessage(tasks[tasksCounter], tasksCounter + 1);
-                tasksCounter++;
-
-            } else if (input.startsWith("deadline ")) {
-                // Add a deadline task to list
-                String[] info = input.substring(9).split(" /by ");
-                tasks[tasksCounter] = new Deadline(info[0], info[1]);
-
-                // Print message
-                addMessage(tasks[tasksCounter], tasksCounter + 1);
-                tasksCounter++;
-
-            } else if (input.startsWith("event ")) {
-                // Add an event task to list
-                String[] info = input.substring(6).split(" /from | /to ");
-                tasks[tasksCounter] = new Event(info[0], info[1], info[2]);
-
-                // Print message
-                addMessage(tasks[tasksCounter], tasksCounter + 1);
-                tasksCounter++;
-
-            } else {
-                // Add normal task into tasklist
-                tasks[tasksCounter] = new Task(input);
-                tasksCounter++;
-                // Echo tasks added
-                System.out.println("Task added: " + input + "\n");
+            } catch (ConversalException e) {
+                System.out.println(e + "\n");
             }
         }
 

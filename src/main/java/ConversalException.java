@@ -5,6 +5,6 @@ public class ConversalException extends RuntimeException {
 
     @Override
     public String toString() {
-        return "Hmm, something seems wrong... Ah! " + getMessage();
+        return "Hmm, something seems wrong... " + getMessage();
     }
 }
