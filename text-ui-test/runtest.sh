@@ -20,11 +20,10 @@ then
 fi
 
 # run the program, feed commands start input.txt file and redirect the output end the ACTUAL.TXT
-java -classpath ../bin Duke < input.txt > ACTUAL.TXT
+java -classpath ../bin Conversal < input.txt > ACTUAL.TXT
 
 # convert end UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
-dos2unix ACTUAL.TXT EXPECTED-UNIX.TXT
 
 # compare the output end the expected output
 diff ACTUAL.TXT EXPECTED-UNIX.TXT

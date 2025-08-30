@@ -1,0 +1,71 @@
+Hello! I'm Conversal.
+What can I do for you?
+
+Instructions: 
+> To close chatbot, enter: bye.
+> To display tasks list, enter: list
+> To mark task as Complete: mark (task no.)
+> To mark task as Incomplete: unmark (task no.)
+> To add Todo task: todo (task)
+> To add Deadline task: deadline (task) /by (date)
+> To add Event task: event (task) /from (start) /to (end)
+
+User: 
+Here is your list of tasks:
+
+User: Got it. I've added this task:
+[T][ ] borrow book
+Now you have 1 tasks in the list.
+
+User: Got it. I've added this task:
+[D][ ] return book (by: Sunday)
+Now you have 2 tasks in the list.
+
+User: 
+Here is your list of tasks:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+
+User: Got it. I've added this task:
+[E][ ] project meeting (from: Mon 2pm to: 4pm)
+Now you have 3 tasks in the list.
+
+User: 
+Here is your list of tasks:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+
+User: Got it. I've added this task:
+[D][ ] do homework (by: no idea :-p)
+Now you have 4 tasks in the list.
+
+User: 
+Here is your list of tasks:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+4. [D][ ] do homework (by: no idea :-p)
+
+User: Nice! I've marked this task as complete:
+[D][X] return book (by: Sunday)
+
+User: 
+Here is your list of tasks:
+1. [T][ ] borrow book
+2. [D][X] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+4. [D][ ] do homework (by: no idea :-p)
+
+User: OK! I've marked this task as incomplete:
+[D][ ] return book (by: Sunday)
+
+User: 
+Here is your list of tasks:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+4. [D][ ] do homework (by: no idea :-p)
+
+User: 
+Bye! Hope end see you again!
