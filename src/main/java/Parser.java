@@ -2,24 +2,23 @@
 public class Parser {
 
     public static Command parse(String input) throws ConversalException {
-        String trimmed = input.trim();
 
-        if (trimmed.equals("bye")) {
+        if (input.equals("bye")) {
             return new ByeCommand();
-        } else if (trimmed.equals("list")) {
+        } else if (input.equals("list")) {
             return new ListCommand();
-        } else if (trimmed.startsWith("mark ")) {
-            return new MarkAsCompleteCommand(trimmed.substring(5));
-        } else if (trimmed.startsWith("unmark ")) {
-            return new MarkAsIncompleteCommand(trimmed.substring(7));
-        } else if (trimmed.startsWith("delete ")) {
-            return new DeleteCommand(trimmed.substring(7));
-        } else if (trimmed.startsWith("todo ")) {
-            return new TodoCommand(trimmed.substring(5));
-        } else if (trimmed.startsWith("deadline ")) {
-            return new DeadlineCommand(trimmed.substring(9));
-        } else if (trimmed.startsWith("event ")) {
-            return new EventCommand(trimmed.substring(6));
+        } else if (input.startsWith("mark ")) {
+            return new MarkAsCompleteCommand(input);
+        } else if (input.startsWith("unmark ")) {
+            return new MarkAsIncompleteCommand(input.substring(7));
+        } else if (input.startsWith("delete ")) {
+            return new DeleteCommand(input.substring(7));
+        } else if (input.startsWith("todo ")) {
+            return new TodoCommand(input.substring(5));
+        } else if (input.startsWith("deadline ")) {
+            return new DeadlineCommand(input.substring(9));
+        } else if (input.startsWith("event ")) {
+            return new EventCommand(input.substring(6));
         } else {
             // Invalid command, throw exception
             throw new ConversalException("I can't seem to locate the issue, please try again!");
