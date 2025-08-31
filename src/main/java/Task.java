@@ -31,6 +31,16 @@ public class Task {
         return taskType;
     }
 
+    // Method 5: Getter
+    public String getDescription() {
+        return description;
+    }
+
+    // Method 6: Getter
+    public Boolean isDone() {
+        return isDone;
+    }
+
     // Override toString method
     @Override
     public String toString() {

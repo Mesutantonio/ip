@@ -11,6 +11,11 @@ public class Event extends Task {
         this.end = end;
     }
 
+    // Method 1: Getter
+    public String getSchedule() {
+        return (start + "-" + end);
+    }
+
     // Override toString method
     @Override
     public String toString() {

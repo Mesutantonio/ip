@@ -9,6 +9,11 @@ public class Deadline extends Task {
         this.dueDate = dueDate;
     }
 
+    // Method 1: Getter
+    public String getDueDate() {
+        return dueDate;
+    }
+
     // Override toString method
     @Override
     public String toString() {
