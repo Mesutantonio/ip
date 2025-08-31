@@ -5,7 +5,6 @@ public class Conversal {
     public static void main(String[] args) {
         Ui ui = new Ui();
         ui.welcomeMessage();
-
         Storage storage = new Storage("./data/tasks.txt");
         TaskList tasks = new TaskList(storage.load());
 
