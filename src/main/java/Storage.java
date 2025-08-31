@@ -3,6 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 // Loads data from hard disc and saves data to hard disc
 public class Storage {
@@ -36,7 +37,7 @@ public class Storage {
                 // Create correct task
                 switch (parts[0]) {
                     case "D": // Deadline task
-                        newTask = new Deadline(parts[2], parts[3]);
+                        newTask = new Deadline(parts[2], LocalDate.parse(parts[3]));
                         break;
                     case "E": // Event task
                         String[] subParts = parts[3].split("-", 2);
@@ -86,7 +87,7 @@ public class Storage {
 
                 if (task instanceof Deadline) {
                     type = "D";
-                    info = " | " + ((Deadline) task).getDueDate();
+                    info = " | " + ((Deadline) task).getDueDate().toString();
                 } else if (task instanceof Event) {
                     type = "E";
                     info = " | " + ((Event) task).getSchedule();

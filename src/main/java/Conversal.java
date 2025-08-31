@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ public class Conversal {
         String instructionUnmark = "To mark task as Incomplete, enter: unmark (task no.)";
         String instructionDelete = "To delete a task: delete (task no.)";
         String instructionTodo = "To add Todo task, enter: todo (task)";
-        String instructionDeadline = "To add Deadline task, enter: deadline (task) /by (date)";
+        String instructionDeadline = "To add Deadline task, enter: deadline (task) /by (date in YYYY-MM-DD format)";
         String instructionEvent = "To add Event task, enter: event (task) /from (start) /to (end)";
 
 
@@ -149,9 +150,17 @@ public class Conversal {
                     }
 
                     // Add to array and print message
-                    tasks.add(new Deadline(info[0], info[1]));
-                    storage.save(tasks);
-                    addMessage(tasks.get(tasks.size() - 1), tasks.size());
+                    try {
+
+                        // Convert String to LocalDate object
+                        LocalDate dueDate = LocalDate.parse(info[1].trim());
+                        tasks.add(new Deadline(info[0], dueDate));
+                        storage.save(tasks);
+                        addMessage(tasks.get(tasks.size() - 1), tasks.size());
+
+                    } catch (Exception e) {
+                        throw new ConversalException("Ah, I got it! " + instructionDeadline);
+                    }
 
                 } else if (input.startsWith("event ")) {
                     // Error handling
