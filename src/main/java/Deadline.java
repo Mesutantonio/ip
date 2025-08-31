@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 // Deadlines: tasks that need to be done before a specific date/tim
 public class Deadline extends Task {
@@ -14,8 +13,8 @@ public class Deadline extends Task {
     }
 
     // Method 1: Getter
-    public String getDueDate() {
-        return dueDate.toString();
+    public LocalDate getDueDate() {
+        return dueDate;
     }
 
     // Override toString method
