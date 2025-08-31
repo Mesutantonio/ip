@@ -12,7 +12,7 @@ public class Parser {
         } else if (input.startsWith("unmark ")) {
             return new MarkAsIncompleteCommand(input);
         } else if (input.startsWith("delete ")) {
-            return new DeleteCommand(input.substring(7));
+            return new DeleteCommand(input);
         } else if (input.startsWith("todo ")) {
             return new TodoCommand(input.substring(5));
         } else if (input.startsWith("deadline ")) {
