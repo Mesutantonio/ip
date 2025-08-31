@@ -14,11 +14,11 @@ public class Parser {
         } else if (input.startsWith("delete ")) {
             return new DeleteCommand(input);
         } else if (input.startsWith("todo ")) {
-            return new TodoCommand(input.substring(5));
+            return new TodoCommand(input);
         } else if (input.startsWith("deadline ")) {
-            return new DeadlineCommand(input.substring(9));
+            return new DeadlineCommand(input);
         } else if (input.startsWith("event ")) {
-            return new EventCommand(input.substring(6));
+            return new EventCommand(input);
         } else {
             // Invalid command, throw exception
             throw new ConversalException("I can't seem to locate the issue, please try again!");
