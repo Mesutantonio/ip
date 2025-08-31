@@ -4,68 +4,68 @@ What can I do for you?
 Instructions: 
 > To close chatbot, enter: bye.
 > To display tasks list, enter: list
-> To mark task as Complete: mark (task no.)
-> To mark task as Incomplete: unmark (task no.)
-> To add Todo task: todo (task)
-> To add Deadline task: deadline (task) /by (date)
-> To add Event task: event (task) /from (start) /to (end)
+> To mark task as Complete, enter: mark (task no.)
+> To mark task as Incomplete, enter: unmark (task no.)
+> To delete a task: delete (task no.)
+> To add Todo task, enter: todo (task)
+> To add Deadline task, enter: deadline (task) /by (date in YYYY-MM-DD format)
+> To add Event task, enter: event (task) /from (start) /to (end)
 
 User: 
 Here is your list of tasks:
 
 User: Got it. I've added this task:
-[T][ ] borrow book
+[T][ ] buy milk
 Now you have 1 tasks in the list.
 
 User: Got it. I've added this task:
-[D][ ] return book (by: Sunday)
+[D][ ] pay John (by: Sept 1 2025)
 Now you have 2 tasks in the list.
 
-User: 
-Here is your list of tasks:
-1. [T][ ] borrow book
-2. [D][ ] return book (by: Sunday)
-
 User: Got it. I've added this task:
-[E][ ] project meeting (from: Mon 2pm to: 4pm)
+[E][ ] team meeting (from: Mon 2pm to: 4pm)
 Now you have 3 tasks in the list.
 
 User: 
 Here is your list of tasks:
-1. [T][ ] borrow book
-2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
-
-User: Got it. I've added this task:
-[D][ ] do homework (by: no idea :-p)
-Now you have 4 tasks in the list.
-
-User: 
-Here is your list of tasks:
-1. [T][ ] borrow book
-2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
-4. [D][ ] do homework (by: no idea :-p)
+1. [T][ ] buy milk
+2. [D][ ] pay John (by: Sept 1 2025)
+3. [E][ ] team meeting (from: Mon 2pm to: 4pm)
 
 User: Nice! I've marked this task as complete:
-[D][X] return book (by: Sunday)
-
-User: 
-Here is your list of tasks:
-1. [T][ ] borrow book
-2. [D][X] return book (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
-4. [D][ ] do homework (by: no idea :-p)
+[D][X] pay John (by: Sept 1 2025)
 
 User: OK! I've marked this task as incomplete:
-[D][ ] return book (by: Sunday)
+[D][ ] pay John (by: Sept 1 2025)
+
+User: Noted. I've removed this task:
+    [T][ ] buy milk
+Now you have 2 tasks in the list.
 
 User: 
 Here is your list of tasks:
-1. [T][ ] borrow book
-2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
-4. [D][ ] do homework (by: no idea :-p)
+1. [D][ ] pay John (by: Sept 1 2025)
+2. [E][ ] team meeting (from: Mon 2pm to: 4pm)
+
+User: Got it. I've added this task:
+[T][ ] clean room
+Now you have 3 tasks in the list.
+
+User: Got it. I've added this task:
+[D][ ] homework (by: Sept 5 2025)
+Now you have 4 tasks in the list.
+
+User: Got it. I've added this task:
+[E][ ] dentist appointment (from: Tue 10am to: 11am)
+Now you have 5 tasks in the list.
 
 User: 
-Bye! Hope end see you again!
+Here is your list of tasks:
+1. [D][ ] pay John (by: Sept 1 2025)
+2. [E][ ] team meeting (from: Mon 2pm to: 4pm)
+3. [T][ ] clean room
+4. [D][ ] homework (by: Sept 5 2025)
+5. [E][ ] dentist appointment (from: Tue 10am to: 11am)
+
+User: 
+Bye! Hope to see you again!

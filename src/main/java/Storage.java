@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
 
-// Loads data from hard disc and saves data to hard disc
+// More OOP - Storage: Deals with loading tasks from the file and saving tasks in the file
 public class Storage {
     private String filePath;
 
