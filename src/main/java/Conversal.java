@@ -15,7 +15,7 @@ public class Conversal {
 
     // Run the chatbot
     public void run() {
-        ui.welcomeMessage();    // Print welcome message
+        ui.welcomeMessage();    // Print Welcome message
 
         while (true) {
             String input = ui.readInput();  // Read user input
