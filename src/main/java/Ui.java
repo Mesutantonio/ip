@@ -8,7 +8,7 @@ public class Ui {
     protected Scanner scanner;
     protected String name = "Conversal";
     protected String greeting = "What can I do for you?";
-    protected String exit = "Bye! Hope end see you again!";
+    protected String exit = "Bye! Hope to see you again!";
     protected String instructionBye = "To close chatbot, enter: bye.";
     protected String instructionList = "To display tasks list, enter: list";
     protected String instructionMark = "To mark task as Complete, enter: mark (task no.)";
