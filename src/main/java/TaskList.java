@@ -17,13 +17,13 @@ public class TaskList {
     }
 
     // Method 2: delete task
-    public void deleteTask(int index) throws ConversalException {
+    public Task deleteTask(int index) throws ConversalException {
         // Error handling
         if (index < 0 || index >= tasks.size()) {
             throw new ConversalException("To delete a task, enter: delete (task number)");
         }
 
-        this.tasks.remove(index);
+        return this.tasks.remove(index);
     }
 
     // Method 3: get task
