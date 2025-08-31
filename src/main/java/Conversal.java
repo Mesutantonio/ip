@@ -31,7 +31,10 @@ public class Conversal {
         System.out.println("> " + instructionEvent);
         System.out.println();
 
-        ArrayList<Task> tasks = new ArrayList<>();
+        // Load storage
+        Storage storage = new Storage("./data/tasks.txt");
+        ArrayList<Task> tasks = storage.load();
+
         Scanner scanner = new Scanner(System.in);
         String input;
 
@@ -63,10 +66,12 @@ public class Conversal {
                         if (index < 0 || index >= tasks.size()) {
                             throw new ConversalException("Enter a valid task number between 1 and " + tasks.size());
                         }
+
                         tasks.get(index).markAsComplete();
-                        String taskString = tasks.get(index).toString();
+                        storage.save(tasks);
                         System.out.println("Nice! I've marked this task as complete:");
-                        System.out.println(taskString + "\n");
+                        System.out.println(tasks.get(index) + "\n");
+
                     } catch (NumberFormatException e) {
                         throw new ConversalException("Ah, I got it! " + instructionMark);
                     }
@@ -82,10 +87,12 @@ public class Conversal {
                         if (index < 0 || index >= tasks.size()) {
                             throw new ConversalException("Enter a valid task number between 1 and " + tasks.size());
                         }
+
                         tasks.get(index).markAsIncomplete();
-                        String taskString = tasks.get(index).toString();
+                        storage.save(tasks);
                         System.out.println("OK! I've marked this task as incomplete:");
-                        System.out.println(taskString + "\n");
+                        System.out.println(tasks.get(index)+ "\n");
+
                     } catch (NumberFormatException e) {
                         throw new ConversalException("Ah, I got it! " + instructionUnmark);
                     }
@@ -103,6 +110,7 @@ public class Conversal {
                         }
 
                         Task removedTask = tasks.remove(index);
+                        storage.save(tasks);
                         System.out.println("Noted. I've removed this task:");
                         System.out.println("    " + removedTask);
                         System.out.println("Now you have " + tasks.size() + " tasks in the list.\n");
@@ -122,6 +130,7 @@ public class Conversal {
 
                     // Add to array and print message
                     tasks.add(new Todo(description));
+                    storage.save(tasks);
                     addMessage(tasks.get(tasks.size() - 1), tasks.size());
 
                 } else if (input.startsWith("deadline ")) {
@@ -141,6 +150,7 @@ public class Conversal {
 
                     // Add to array and print message
                     tasks.add(new Deadline(info[0], info[1]));
+                    storage.save(tasks);
                     addMessage(tasks.get(tasks.size() - 1), tasks.size());
 
                 } else if (input.startsWith("event ")) {
@@ -161,6 +171,7 @@ public class Conversal {
 
                     // Add to array and print message
                     tasks.add(new Event(info[0], info[1], info[2]));
+                    storage.save(tasks);
                     addMessage(tasks.get(tasks.size() - 1), tasks.size());
 
                 } else {
