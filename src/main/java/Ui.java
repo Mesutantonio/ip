@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// More OOP - Ui: deals with interactions with the user
 public class Ui {
 
     // Fields
@@ -92,4 +93,13 @@ public class Ui {
     public void close() {
         scanner.close();
     }
+
+    // Method 10 - 15: Getters
+    public String getInstructionMark()      { return instructionMark; }
+    public String getInstructionUnmark()    { return instructionUnmark; }
+    public String getInstructionDelete()    { return instructionDelete; }
+    public String getInstructionTodo()      { return instructionTodo; }
+    public String getInstructionDeadline()  { return instructionDeadline; }
+    public String getInstructionEvent()     { return instructionEvent; }
+
 }
