@@ -17,6 +17,7 @@ public class Ui {
     protected final static String exit = "Bye! Hope to see you again!";
     protected final static String instructionBye = "To close chatbot, enter: bye.";
     protected final static String instructionList = "To display tasks list, enter: list";
+    protected final static String instructionFind = "To find task(s) with keyword, enter: find (keyword)";
     protected final static String instructionMark =
             "To mark task as Complete, enter: mark (task no.)";
     protected final static String instructionUnmark =
