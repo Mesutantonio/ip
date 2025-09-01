@@ -1,6 +1,15 @@
+package conversal.command;
+
+import conversal.storage.Storage;
+import conversal.task.Task;
+import conversal.task.TaskList;
+import conversal.ui.Ui;
+import conversal.exception.ConversalException;
+import conversal.task.Deadline;
+
 import java.time.LocalDate;
 
-// Command to create deadline task
+// conversal.command.Command to create deadline task
 public class DeadlineCommand implements Command {
 
     // Fields

@@ -1,4 +1,12 @@
-// Command to delete task
+package conversal.command;
+
+import conversal.storage.Storage;
+import conversal.task.Task;
+import conversal.task.TaskList;
+import conversal.ui.Ui;
+import conversal.exception.ConversalException;
+
+// conversal.command.Command to delete task
 public class DeleteCommand implements Command {
 
     // Fields

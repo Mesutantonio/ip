@@ -1,3 +1,12 @@
+package conversal;
+
+import conversal.command.Command;
+import conversal.exception.ConversalException;
+import conversal.parser.Parser;
+import conversal.storage.Storage;
+import conversal.task.TaskList;
+import conversal.ui.Ui;
+
 // Main file
 public class Conversal {
 
@@ -9,7 +18,7 @@ public class Conversal {
     // Constructor
     public Conversal(String filePath) {
         ui = new Ui();    // Create new user interface object
-        storage = new Storage(filePath);   // Create Storage object
+        storage = new Storage(filePath);   // Create conversal.storage.Storage object
         tasks = new TaskList(storage.load());
     }
 

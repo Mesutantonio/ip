@@ -1,4 +1,4 @@
-Hello! I'm Conversal.
+Hello! I'm conversal.Conversal.
 What can I do for you?
 
 Instructions: 
@@ -7,9 +7,9 @@ Instructions:
 > To mark task as Complete, enter: mark (task no.)
 > To mark task as Incomplete, enter: unmark (task no.)
 > To delete a task: delete (task no.)
-> To add Todo task, enter: todo (task)
-> To add Deadline task, enter: deadline (task) /by (date in YYYY-MM-DD format)
-> To add Event task, enter: event (task) /from (start) /to (end)
+> To add conversal.task.Todo task, enter: todo (task)
+> To add conversal.task.Deadline task, enter: deadline (task) /by (date in YYYY-MM-DD format)
+> To add conversal.task.Event task, enter: event (task) /from (start) /to (end)
 
 User: 
 Here is your list of tasks:

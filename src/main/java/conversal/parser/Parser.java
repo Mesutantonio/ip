@@ -1,4 +1,9 @@
-// More OOP - Parser: deals with making sense of the user command
+package conversal.parser;
+
+import conversal.command.*;
+import conversal.exception.ConversalException;
+
+// More OOP - conversal.parser.Parser: deals with making sense of the user command
 public class Parser {
 
     public static Command parse(String input) throws ConversalException {

@@ -1,3 +1,5 @@
+package conversal.task;
+
 // Events: tasks that start at a specific date/time and ends at a specific date/time
 public class Event extends Task {
     // Fields
