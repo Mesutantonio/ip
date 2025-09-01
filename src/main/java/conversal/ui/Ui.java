@@ -5,7 +5,9 @@ import conversal.task.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// More OOP - conversal.ui.Ui: deals with interactions with the user
+/**
+ * Handles user I/O (welcome, bye, instructions, messages, results and errors).
+ */
 public class Ui {
 
     // Fields
@@ -27,13 +29,19 @@ public class Ui {
         this.scanner = new Scanner(System.in);
     }
 
-    // Method 1: read user's input
+    /**
+     * Prompts user for their input and captures it
+     *
+     * @return user input as a string
+     */
     public String readInput() {
         System.out.print("User: ");
         return scanner.nextLine();
     }
 
-    // Method 2: print welcome message and instructions
+    /**
+     * Prints welcome message and instructions
+     */
     public void welcomeMessage() {
         System.out.println("Hello! I'm " + this.name + ".");
         System.out.println(this.greeting + "\n");
@@ -49,19 +57,27 @@ public class Ui {
         System.out.println();
     }
 
-    // Method 3: print exit message
+    /**
+     * Prints exit message
+     */
     public void exitMessage() {
         System.out.println("\n" + this.exit);
     }
 
-    // Method 4: print message when task is added
+    /**
+     * Prints welcome message and instructions
+     */
     public void addMessage(Task task, int totalTasks) {
         System.out.println("Got it. I've added this task:");
         System.out.println(task);
         System.out.println("Now you have " + totalTasks + " tasks in the list.\n");
     }
 
-    // Method 5: show list
+    /**
+     * Shows list of tasks 
+     *
+     * @param tasks ArrayList of tasks.
+     */
     public void showList(ArrayList<Task> tasks) {
         System.out.println("\nHere is your list of tasks:");
         for (int i = 0; i < tasks.size(); i++) {
@@ -71,7 +87,12 @@ public class Ui {
         System.out.println();
     }
 
-    // Method 6: acknowledge action (marking and unmarking)
+    /**
+     * Prints acknowledgement of marking or unmarking a task.
+     *
+     * @param task       the task that was marked or unmarked
+     * @param isComplete true if the task was marked as complete, false if unmarked
+     */
     public void acknowledge(Task task, boolean isComplete) {
         if (isComplete) {
             System.out.println("Nice! I've marked this task as complete:");
@@ -81,19 +102,28 @@ public class Ui {
         System.out.println(task + "\n");
     }
 
-    // Method 7: acknowledge deletion
+    /**
+     * Prints acknowledgement of a task being deleted, and the updated task count.
+     *
+     * @param size the number of tasks remaining in the list
+     * @param name the string representation of the deleted task
+     */
     public void deleteMessage(int size, String name) {
         System.out.println("Noted. I've removed this task:");
         System.out.println("    " + name);
         System.out.println("Now you have " + size + " tasks in the list.\n");
     }
 
-    // Method 8: print error
+    /**
+     * Prints error message due to thrown Conversal Exception
+     *
+     * @param message the message to be printed out
+     */
     public void printError(String message) {
         System.out.println(message + "\n");
     }
 
-    // Method 9: close scanner (new)
+    // Method 9: close scanner
     public void close() {
         scanner.close();
     }

@@ -1,49 +1,86 @@
 package conversal.task;
 
+/**
+ * Represents a generic task in the Conversal chatbot.
+ *
+ * A task has a description, a completion status, and a task type:
+ * (e.g. Todo, Deadline, Event ).
+ */
 public class Task {
     // Fields
     protected String description;
     protected boolean isDone;
     protected TaskType taskType;
 
-    // Constructor
+    /**
+     * Creates a new Task with the given description and type.
+     * Tasks are initially marked as incomplete.
+     *
+     * @param description the description of the task
+     * @param taskType    the type of the task
+     */
     public Task(String description, TaskType taskType) {
         this.description = description;
         this.isDone = false;
         this.taskType = taskType;
     }
 
-    // Method 1: Get status
+    /**
+     * Returns the status icon of the task.
+     *
+     * @return "X" if the task is done, otherwise a space " "
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
-    // Method 2: Marking task as complete
+    /**
+     * Marks the task as complete.
+     */
     public void markAsComplete() {
         this.isDone = true;
     }
 
-    // Method 3: Marking task as incomplete
+    /**
+     * Marks the task as incomplete.
+     */
     public void markAsIncomplete() {
         this.isDone = false;
     }
 
-    // Method 4: Getter
+    /**
+     * Returns the type of the task.
+     *
+     * @return the TaskType of this task
+     */
     public TaskType getTaskType() {
         return taskType;
     }
 
-    // Method 5: Getter
+    /**
+     * Returns the description of the task.
+     *
+     * @return the task description
+     */
     public String getDescription() {
         return description;
     }
 
-    // Method 6: Getter
+    /**
+     * Returns the completion status of the task.
+     *
+     * @return true if the task is done, false otherwise
+     */
     public Boolean isDone() {
         return isDone;
     }
 
-    // Override toString method
+    /**
+     * Returns the string representation of the task:
+     * type, completion status, and description.
+     *
+     * @return string form of the task
+     */
     @Override
     public String toString() {
         return taskType.getSymbol() + "[" + getStatusIcon() + "] " + description;

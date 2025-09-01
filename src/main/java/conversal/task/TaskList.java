@@ -4,68 +4,104 @@ import conversal.exception.ConversalException;
 
 import java.util.ArrayList;
 
-// More OOP - conversal.task.TaskList: contains the task list
+/**
+ * Represents a list of tasks in the Conversal chatbot.
+ *
+ * Provides operations to add, delete, find, mark, and unmark tasks.
+ * Also includes operation to check the current size of the list and return list itself
+ *
+ */
 public class TaskList {
 
     // Fields
     private final ArrayList<Task> tasks;
 
-    // Constructor
+    /**
+     * Creates a TaskList object backed by the given ArrayList of tasks.
+     *
+     * @param tasks the list of tasks to initialise with
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 
-    // Method 1: add task
+    /**
+     * Adds a new task to the task list.
+     *
+     * @param task the task to add
+     */
     public void addTask(Task task) {
         this.tasks.add(task);
     }
 
-    // Method 2: delete task
+    /**
+     * Deletes and returns the task at the given index.
+     *
+     * @param index the index of the task to delete
+     * @return the removed task
+     * @throws ConversalException if the index is invalid
+     */
     public Task deleteTask(int index) throws ConversalException {
-        // Error handling
         if (index < 0 || index >= tasks.size()) {
             throw new ConversalException("To delete a task, enter: delete (task number)");
         }
-
         return this.tasks.remove(index);
     }
 
-    // Method 3: get task
+    /**
+     * Retrieves the task at the given index.
+     *
+     * @param index the index of the task to retrieve
+     * @return the task at the given index
+     * @throws ConversalException if the index is invalid
+     */
     public Task get(int index) throws ConversalException {
-        // Error handling
         if (index < 0 || index >= tasks.size()) {
             throw new ConversalException("Enter a valid task number between 1 and " + tasks.size());
         }
-
         return this.tasks.get(index);
     }
 
-    // Method 4: mark task as complete
-    public void markTaskComplete(int index) throws ConversalException  {
-        // Error handling
+    /**
+     * Marks the task at the given index as complete.
+     *
+     * @param index the index of the task to mark as complete
+     * @throws ConversalException if the index is invalid
+     */
+    public void markTaskComplete(int index) throws ConversalException {
         if (index < 0 || index >= tasks.size()) {
             throw new ConversalException("Enter a valid task number between 1 and " + tasks.size());
         }
-
         this.tasks.get(index).markAsComplete();
     }
 
-    // Method 5: mark task as incomplete
+    /**
+     * Marks the task at the given index as incomplete.
+     *
+     * @param index the index of the task to mark as incomplete
+     * @throws ConversalException if the index is invalid
+     */
     public void markTaskIncomplete(int index) throws ConversalException {
-        // Error handling
         if (index < 0 || index >= tasks.size()) {
             throw new ConversalException("Enter a valid task number between 1 and " + tasks.size());
         }
-
         this.tasks.get(index).markAsIncomplete();
     }
 
-    // Method 6: return task list itself
+    /**
+     * Returns the list of tasks.
+     *
+     * @return the ArrayList of tasks
+     */
     public ArrayList<Task> getList() {
         return this.tasks;
     }
 
-    // Method 7: size helper
+    /**
+     * Returns the number of tasks in the list.
+     *
+     * @return the size of the list
+     */
     public int size() {
         return this.tasks.size();
     }
