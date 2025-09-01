@@ -1,3 +1,5 @@
+package conversal.exception;
+
 public class ConversalException extends RuntimeException {
     public ConversalException(String message) {
         super(message);

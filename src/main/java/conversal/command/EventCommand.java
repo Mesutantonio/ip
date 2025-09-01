@@ -1,6 +1,13 @@
-import java.time.LocalDate;
+package conversal.command;
 
-// Command to create event task
+import conversal.exception.ConversalException;
+import conversal.storage.Storage;
+import conversal.task.Event;
+import conversal.task.Task;
+import conversal.task.TaskList;
+import conversal.ui.Ui;
+
+// Event Command to create event task
 public class EventCommand implements Command {
 
     // Fields

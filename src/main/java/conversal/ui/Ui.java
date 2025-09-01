@@ -1,12 +1,16 @@
+package conversal.ui;
+
+import conversal.task.Task;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// More OOP - Ui: deals with interactions with the user
+// More OOP - conversal.ui.Ui: deals with interactions with the user
 public class Ui {
 
     // Fields
     protected Scanner scanner;
-    protected String name = "Conversal";
+    protected String name = "conversal.Conversal";
     protected String greeting = "What can I do for you?";
     protected String exit = "Bye! Hope to see you again!";
     protected String instructionBye = "To close chatbot, enter: bye.";
@@ -14,9 +18,9 @@ public class Ui {
     protected String instructionMark = "To mark task as Complete, enter: mark (task no.)";
     protected String instructionUnmark = "To mark task as Incomplete, enter: unmark (task no.)";
     protected String instructionDelete = "To delete a task: delete (task no.)";
-    protected String instructionTodo = "To add Todo task, enter: todo (task)";
-    protected String instructionDeadline = "To add Deadline task, enter: deadline (task) /by (date in YYYY-MM-DD format)";
-    protected String instructionEvent = "To add Event task, enter: event (task) /from (start) /to (end)";
+    protected String instructionTodo = "To add conversal.task.Todo task, enter: todo (task)";
+    protected String instructionDeadline = "To add conversal.task.Deadline task, enter: deadline (task) /by (date in YYYY-MM-DD format)";
+    protected String instructionEvent = "To add conversal.task.Event task, enter: event (task) /from (start) /to (end)";
 
     // Constructor
     public Ui() {

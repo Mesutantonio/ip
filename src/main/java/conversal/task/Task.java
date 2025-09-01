@@ -1,3 +1,5 @@
+package conversal.task;
+
 public class Task {
     // Fields
     protected String description;

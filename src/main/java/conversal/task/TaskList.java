@@ -1,6 +1,10 @@
+package conversal.task;
+
+import conversal.exception.ConversalException;
+
 import java.util.ArrayList;
 
-// More OOP - TaskList: contains the task list
+// More OOP - conversal.task.TaskList: contains the task list
 public class TaskList {
 
     // Fields

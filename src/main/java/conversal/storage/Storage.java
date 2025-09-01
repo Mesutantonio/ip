@@ -1,3 +1,10 @@
+package conversal.storage;
+
+import conversal.task.Event;
+import conversal.task.Task;
+import conversal.task.Todo;
+import conversal.task.Deadline;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -5,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
 
-// More OOP - Storage: Deals with loading tasks from the file and saving tasks in the file
+// More OOP - conversal.storage.Storage: Deals with loading tasks from the file and saving tasks in the file
 public class Storage {
     private String filePath;
 
@@ -36,10 +43,10 @@ public class Storage {
 
                 // Create correct task
                 switch (parts[0]) {
-                    case "D": // Deadline task
+                    case "D": // conversal.task.Deadline task
                         newTask = new Deadline(parts[2], LocalDate.parse(parts[3]));
                         break;
-                    case "E": // Event task
+                    case "E": // conversal.task.Event task
                         String[] subParts = parts[3].split("-", 2);
                         newTask = new Event(parts[2], subParts[0], subParts[1]); // parts[3] is the 'at' string
                         break;
@@ -80,7 +87,7 @@ public class Storage {
             FileWriter fw = new FileWriter(file);
             for (Task task : tasks) {
 
-                String type = "T"; // Default is Task
+                String type = "T"; // Default is conversal.task.Task
                 String description = task.getDescription();
                 String isDone = task.isDone() ? "1" : "0";
                 String info = "";
