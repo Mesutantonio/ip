@@ -15,6 +15,7 @@ public class Ui {
     protected String exit = "Bye! Hope to see you again!";
     protected String instructionBye = "To close chatbot, enter: bye.";
     protected String instructionList = "To display tasks list, enter: list";
+    protected String instructionFind = "To find task(s) with keyword, enter: find (keyword)";
     protected String instructionMark = "To mark task as Complete, enter: mark (task no.)";
     protected String instructionUnmark = "To mark task as Incomplete, enter: unmark (task no.)";
     protected String instructionDelete = "To delete a task: delete (task no.)";
@@ -88,17 +89,27 @@ public class Ui {
         System.out.println("Now you have " + size + " tasks in the list.\n");
     }
 
-    // Method 8: print error
+    // Method 8: display all task(s) with description including keyword
+    public void showFound(ArrayList<Task> matches) {
+        System.out.println("\nHere are the matching tasks in your list:");
+        for (int i = 0; i < matches.size(); i++) {
+            System.out.println((i + 1) + ". " + matches.get(i));
+        }
+        System.out.println();
+    }
+
+    // Method 9: print error
     public void printError(String message) {
         System.out.println(message + "\n");
     }
 
-    // Method 9: close scanner (new)
+    // Method 10: close scanner
     public void close() {
         scanner.close();
     }
 
-    // Method 10 - 15: Getters
+    // Method: getters
+    public String getFindInstruction()      { return instructionFind; }
     public String getInstructionMark()      { return instructionMark; }
     public String getInstructionUnmark()    { return instructionUnmark; }
     public String getInstructionDelete()    { return instructionDelete; }
