@@ -8,7 +8,7 @@ import conversal.exception.ConversalException;
 
 import java.util.ArrayList;
 
-// Find Command to find all tasks in task list that match keyword
+// Find Command to find all tasks in TaskList with description containing keyword
 public class FindCommand implements Command {
 
     private final String input;
