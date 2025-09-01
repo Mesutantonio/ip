@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
+// JUnit test for TaskList for Task operations (adding, deleting, marking and unmarking)
 class TaskListTest {
 
     // Helper test: check if task status is visually updated

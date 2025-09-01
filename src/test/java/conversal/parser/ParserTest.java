@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// Junit test for parser to return correct command based on user input
+// Junit test for Parser to return correct command based on user input
 class ParserTest {
 
     // Test 1: bye input --> Bye command
