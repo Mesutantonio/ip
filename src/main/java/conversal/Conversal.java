@@ -7,7 +7,13 @@ import conversal.command.Command;
 import conversal.parser.Parser;
 import conversal.exception.ConversalException;
 
-// Main file
+/**
+ * Entry point of the Conversal chatbot application.
+ *
+ * Initialises core components (ui, storage, task list) and runs
+ * the main input-processing loop until the user exits.
+ *
+ */
 public class Conversal {
 
     // Fields
@@ -22,7 +28,9 @@ public class Conversal {
         tasks = new TaskList(storage.load());
     }
 
-    // Run the chatbot
+    /**
+     * Runs the chatbot
+     */
     public void run() {
         ui.welcomeMessage();    // Print Welcome message
 
