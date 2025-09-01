@@ -109,7 +109,7 @@ public class Ui {
     }
 
     // Method: getters
-    public String getFindInstruction()      { return instructionFind; }
+    public String getInstructionFind()      { return instructionFind; }
     public String getInstructionMark()      { return instructionMark; }
     public String getInstructionUnmark()    { return instructionUnmark; }
     public String getInstructionDelete()    { return instructionDelete; }

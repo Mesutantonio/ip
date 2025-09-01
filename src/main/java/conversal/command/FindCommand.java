@@ -1,9 +1,12 @@
 package conversal.command;
 
 import conversal.storage.Storage;
+import conversal.task.Task;
 import conversal.task.TaskList;
 import conversal.ui.Ui;
 import conversal.exception.ConversalException;
+
+import java.util.ArrayList;
 
 // Find Command to find all tasks in task list that match keyword
 public class FindCommand implements Command {
@@ -25,7 +28,8 @@ public class FindCommand implements Command {
             throw new ConversalException("Ah, I got it! " + ui.getInstructionFind());
         }
 
-        // Find logic here
+        ArrayList<Task> matches = tasks.find(keyword);
+        ui.showFound(matches);
     }
 
     @Override
