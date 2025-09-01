@@ -27,6 +27,8 @@ public class Parser {
             return new ByeCommand();
         } else if (input.equals("list")) {
             return new ListCommand();
+        } else if (input.startsWith("find ")) {
+            return new FindCommand(input);
         } else if (input.startsWith("mark ")) {
             return new MarkAsCompleteCommand(input);
         } else if (input.startsWith("unmark ")) {

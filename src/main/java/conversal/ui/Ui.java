@@ -80,7 +80,7 @@ public class Ui {
     }
 
     /**
-     * Shows list of tasks 
+     * Shows list of tasks
      *
      * @param tasks ArrayList of tasks.
      */
@@ -120,6 +120,15 @@ public class Ui {
         System.out.println("Now you have " + size + " tasks in the list.\n");
     }
 
+    // Method 8: display all task(s) with description including keyword
+    public void showFound(ArrayList<Task> matches) {
+        System.out.println("\nHere are the matching tasks in your list:");
+        for (int i = 0; i < matches.size(); i++) {
+            System.out.println((i + 1) + ". " + matches.get(i));
+        }
+        System.out.println();
+    }
+
     /**
      * Prints error message due to thrown Conversal Exception
      *
@@ -129,12 +138,13 @@ public class Ui {
         System.out.println(message + "\n");
     }
 
-    // Method 9: close scanner
+    // Method 10: close scanner
     public void close() {
         scanner.close();
     }
 
-    // Method 10 - 15: Getters
+    // Method: getters
+    public String getInstructionFind()      { return instructionFind; }
     public String getInstructionMark()      { return instructionMark; }
     public String getInstructionUnmark()    { return instructionUnmark; }
     public String getInstructionDelete()    { return instructionDelete; }

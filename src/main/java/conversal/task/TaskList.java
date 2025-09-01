@@ -105,4 +105,17 @@ public class TaskList {
     public int size() {
         return this.tasks.size();
     }
+
+    // Method 8: find task(s) by searching for keyword in description
+    public ArrayList<Task> find(String keyword) {
+        ArrayList<Task> result = new ArrayList<>();
+        String k = keyword.toLowerCase();
+        for (Task t : tasks) {
+            if (t.getDescription().toLowerCase().contains(k)) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
 }
