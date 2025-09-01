@@ -1,11 +1,11 @@
 package conversal.command;
 
-import conversal.exception.ConversalException;
-import conversal.storage.Storage;
 import conversal.task.TaskList;
+import conversal.storage.Storage;
 import conversal.ui.Ui;
+import conversal.exception.ConversalException;
 
-// conversal.command.Command to exit chatbot
+// Bye Command to exit chatbot
 public class ByeCommand implements Command {
 
     @Override

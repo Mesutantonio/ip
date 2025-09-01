@@ -5,7 +5,7 @@ import conversal.task.TaskList;
 import conversal.ui.Ui;
 import conversal.exception.ConversalException;
 
-// conversal.command.Command to list all tasks in task list
+// List Command to list all tasks in task list
 public class ListCommand implements Command {
 
     @Override

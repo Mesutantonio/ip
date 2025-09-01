@@ -1,9 +1,9 @@
 package conversal.command;
 
-import conversal.exception.ConversalException;
-import conversal.storage.Storage;
 import conversal.task.TaskList;
+import conversal.storage.Storage;
 import conversal.ui.Ui;
+import conversal.exception.ConversalException;
 
 // conversal.command.Command interface on which all other commands are built on
 public interface Command {

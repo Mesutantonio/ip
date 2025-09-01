@@ -5,7 +5,7 @@ import conversal.task.TaskList;
 import conversal.ui.Ui;
 import conversal.exception.ConversalException;
 
-// conversal.command.Command to mark task as complete
+// MarkAsComplete Command to mark task as complete
 public class MarkAsCompleteCommand implements Command {
 
     // Fields

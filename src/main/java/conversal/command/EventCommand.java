@@ -7,7 +7,7 @@ import conversal.task.Task;
 import conversal.task.TaskList;
 import conversal.ui.Ui;
 
-// conversal.command.Command to create event task
+// Event Command to create event task
 public class EventCommand implements Command {
 
     // Fields

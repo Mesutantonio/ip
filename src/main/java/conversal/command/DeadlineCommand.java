@@ -6,10 +6,9 @@ import conversal.task.TaskList;
 import conversal.ui.Ui;
 import conversal.exception.ConversalException;
 import conversal.task.Deadline;
-
 import java.time.LocalDate;
 
-// conversal.command.Command to create deadline task
+// Deadline Command to create deadline task
 public class DeadlineCommand implements Command {
 
     // Fields

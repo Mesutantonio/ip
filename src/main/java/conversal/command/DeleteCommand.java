@@ -6,7 +6,7 @@ import conversal.task.TaskList;
 import conversal.ui.Ui;
 import conversal.exception.ConversalException;
 
-// conversal.command.Command to delete task
+// Delete Command to delete task
 public class DeleteCommand implements Command {
 
     // Fields
