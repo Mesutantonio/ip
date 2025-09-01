@@ -8,17 +8,46 @@ import conversal.exception.ConversalException;
 import conversal.task.Deadline;
 import java.time.LocalDate;
 
-// Deadline Command to create deadline task
+/**
+ * Represents a command to create and add a Deadline task
+ * to the task list.
+ *
+ * The DeadlineCommand is created when the user input starts with "deadline ".
+ *
+ * It extracts the description and due date from the input,
+ * creates a new Deadline task,
+ * adds it to the TaskList,
+ * saves the updated list to Storage,
+ * and updates the user through Ui.
+ */
 public class DeadlineCommand implements Command {
 
     // Fields
     private String input;
 
-    // Constructor
+    /**
+     * Creates a DeadlineCommand using the user input.
+     *
+     * @param input the user input containing the description and due date of the deadline
+     */
     public DeadlineCommand(String input) {
         this.input = input;
     }
 
+    /**
+     * Executes the command to create and add a new Deadline task.
+     *
+     * If the description or due date are missing, or if the due date
+     * cannot be parsed into a valid LocalDate, a ConversalException is thrown.
+     * Else, the new task is added to the TaskList,
+     * the list is saved via Storage,
+     * and a confirmation message is displayed through Ui.
+     *
+     * @param tasks   the task list to add the new deadline into
+     * @param storage the storage of tasks
+     * @param ui      the UI to show the confirmation message
+     * @throws ConversalException if the deadline description or date is missing or invalid
+     */
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws ConversalException {
         if (input.length() <= 9) {
@@ -42,6 +71,11 @@ public class DeadlineCommand implements Command {
         }
     }
 
+    /**
+     * Returns whether this command exits the application.
+     *
+     * @return false because DeadlineCommand never exits the application
+     */
     @Override
     public boolean isExit() {
         return false;
