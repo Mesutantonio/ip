@@ -10,8 +10,10 @@ import conversal.ui.Ui;
 /**
  * Entry point of the Conversal chatbot application.
  *
- * Initializes core components (UI, storage, task list) and runs
+ * Initialises core components (UI, storage, task list) and runs
  * the main input-processing loop until the user exits.
+ * Also displays a GUI-friendly single-turn API via {@link #getResponse(String)}.
+ *
  */
 public class Conversal {
 
@@ -21,17 +23,29 @@ public class Conversal {
     private final Ui ui;
 
     /**
-     * Constructor
+     * CLI constructor.
      */
     public Conversal(String filePath) {
-        ui = new Ui(); // Create new user interface object
-        storage = new Storage(filePath); // Create storage object
-        tasks = new TaskList(storage.load());
+        this.ui = new Ui(); // Create new user interface object
+        this.storage = new Storage(filePath); // Create storage object
+        this.tasks = new TaskList(storage.load());
     }
 
     /**
-     * Runs the chatbot main loop: reads user input, parses a command,
-     * executes it, and exits when the command indicates termination.
+     * GUI constructor (used by JavaFX MainApp).
+     *
+     * @param ui GUI-aware UI implementation
+     * @param storage storage component
+     * @param tasks in-memory task list
+     */
+    public Conversal(Ui ui, Storage storage, TaskList tasks) {
+        this.ui = ui;
+        this.storage = storage;
+        this.tasks = tasks;
+    }
+
+    /**
+     * Runs the chatbot main loop (CLI mode).
      */
     public void run() {
         ui.welcomeMessage(); // Print welcome message
@@ -54,7 +68,34 @@ public class Conversal {
     }
 
     /**
-     * Application entry point.
+     * Processes a single line of input and returns the response text (GUI mode).
+     *
+     * @param input user input line
+     * @return text to display in the GUI
+     */
+    public String getResponse(String input) {
+        try {
+            Command cmd = Parser.parse(input);
+            cmd.execute(tasks, storage, ui);
+
+            // If UI is a GUI buffer (e.g., GuiUi with flush()), return buffered text.
+            if (ui instanceof conversal.ui.GuiUi) {
+                return ((conversal.ui.GuiUi) ui).flush();
+            }
+            // Fallback when using plain Ui (e.g., in tests)
+            return "OK.";
+        } catch (ConversalException e) {
+            return e.toString();
+        }
+    }
+
+    // Optional accessors (handy for tests/controllers)
+    public Ui getUi() { return ui; }
+    public Storage getStorage() { return storage; }
+    public TaskList getTasks() { return tasks; }
+
+    /**
+     * Application entry point (CLI mode).
      *
      * @param args CLI arguments (ignored)
      */

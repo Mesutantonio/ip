@@ -1,3 +1,0 @@
-T | 0 | math HW
-D | 0 | call dad | 2025-09-04
-E | 0 | ifg | today-friday
