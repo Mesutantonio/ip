@@ -20,7 +20,9 @@ public class Conversal {
     private final TaskList tasks;
     private final Ui ui;
 
-    // Constructor
+    /**
+     * Constructor
+     */
     public Conversal(String filePath) {
         ui = new Ui(); // Create new user interface object
         storage = new Storage(filePath); // Create storage object
