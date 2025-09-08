@@ -3,10 +3,34 @@ package conversal.ui;
 import conversal.task.Task;
 import java.util.ArrayList;
 
+/**
+ * A UI variant that temporarily stores output messages for display in the GUI.
+ * <p>
+ * Instead of printing to the console, this class stores lines in a buffer.
+ * The line to be printed can then be retrieved using {@link #flush()} and shown
+ * inside the GUI dialog boxes.
+ * </p>
+ */
 public class GuiUi extends Ui {
     private final StringBuilder out = new StringBuilder();
+
+    /**
+     * Appends a line of text to the buffer.
+     *
+     * @param s the line to append
+     */
     private void line(String s) { out.append(s).append(System.lineSeparator()); }
-    public String flush() { String s = out.toString(); out.setLength(0); return s; }
+
+    /**
+     * Returns the current contents of the buffer and clears it.
+     *
+     * @return the buffered output as a single string
+     */
+    public String flush() {
+        String s = out.toString();
+        out.setLength(0);
+        return s;
+    }
 
     @Override public void welcomeMessage() { line("Hello! I'm Conversal."); }
     @Override public void exitMessage() { line("Bye! Hope to see you again!"); }
@@ -25,8 +49,8 @@ public class GuiUi extends Ui {
     }
 
     @Override public void acknowledge(Task task, boolean isComplete) {
-        line(isComplete ? "Nice! I've marked this task as complete:" :
-                "OK! I've marked this task as incomplete:");
+        line(isComplete ? "Nice! I've marked this task as complete:"
+                : "OK! I've marked this task as incomplete:");
         line(task.toString());
     }
 
