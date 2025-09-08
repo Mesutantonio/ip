@@ -10,7 +10,7 @@ import conversal.task.Task;
  */
 public class Ui {
 
-    /* ======================= Constants (in ALL_CAPS, before fields) ======================= */
+    /*  Constants  */
 
     private static final String NAME = "conversal.Conversal";
     private static final String GREETING = "What can I do for you?";
@@ -28,18 +28,18 @@ public class Ui {
     private static final String INSTRUCTION_EVENT =
             "To add conversal.task.Event task, enter: event (task) /from (start) /to (end)";
 
-    /* ======================= Fields ======================= */
+    /*  Fields  */
 
     private final Scanner scanner;
 
-    /* ======================= Constructors ======================= */
+    /*  Constructors */
 
     /** Creates a UI that reads from standard input. */
     public Ui() {
         this.scanner = new Scanner(System.in);
     }
 
-    /* ======================= Input / Output ======================= */
+    /* Input / Output  */
 
     /**
      * Prompts user for their input and captures it.
@@ -152,7 +152,7 @@ public class Ui {
         scanner.close();
     }
 
-    /* ======================= Getters for instruction strings ======================= */
+    /* Getters for instruction strings */
 
     public String getInstructionFind() {
         return INSTRUCTION_FIND;
