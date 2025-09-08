@@ -1,43 +1,48 @@
 package conversal.ui;
 
-import conversal.task.Task;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import conversal.task.Task;
+
 /**
- * Handles user I/O (welcome, bye, instructions, messages, results and errors).
+ * Handles user I/O (welcome, bye, instructions, messages, results, and errors).
  */
 public class Ui {
 
-    // Fields
-    protected Scanner scanner;
-    protected final static String name = "conversal.Conversal";
-    protected final static String greeting = "What can I do for you?";
-    protected final static String exit = "Bye! Hope to see you again!";
-    protected final static String instructionBye = "To close chatbot, enter: bye.";
-    protected final static String instructionList = "To display tasks list, enter: list";
-    protected final static String instructionFind = "To find task(s) with keyword, enter: find (keyword)";
-    protected final static String instructionMark =
-            "To mark task as Complete, enter: mark (task no.)";
-    protected final static String instructionUnmark =
-            "To mark task as Incomplete, enter: unmark (task no.)";
-    protected final static String instructionDelete =
-            "To delete a task: delete (task no.)";
-    protected final static String instructionTodo =
-            "To add conversal.task.Todo task, enter: todo (task)";
-    protected final static String instructionDeadline =
+    /* ======================= Constants (in ALL_CAPS, before fields) ======================= */
+
+    private static final String NAME = "conversal.Conversal";
+    private static final String GREETING = "What can I do for you?";
+    private static final String EXIT = "Bye! Hope to see you again!";
+
+    private static final String INSTRUCTION_BYE = "To close chatbot, enter: bye.";
+    private static final String INSTRUCTION_LIST = "To display tasks list, enter: list";
+    private static final String INSTRUCTION_FIND = "To find task(s) with keyword, enter: find (keyword)";
+    private static final String INSTRUCTION_MARK = "To mark task as Complete, enter: mark (task no.)";
+    private static final String INSTRUCTION_UNMARK = "To mark task as Incomplete, enter: unmark (task no.)";
+    private static final String INSTRUCTION_DELETE = "To delete a task: delete (task no.)";
+    private static final String INSTRUCTION_TODO = "To add conversal.task.Todo task, enter: todo (task)";
+    private static final String INSTRUCTION_DEADLINE =
             "To add conversal.task.Deadline task, enter: deadline (task) /by (date in YYYY-MM-DD format)";
-    protected final static String instructionEvent =
+    private static final String INSTRUCTION_EVENT =
             "To add conversal.task.Event task, enter: event (task) /from (start) /to (end)";
 
-    // Constructor
+    /* ======================= Fields ======================= */
+
+    private final Scanner scanner;
+
+    /* ======================= Constructors ======================= */
+
+    /** Creates a UI that reads from standard input. */
     public Ui() {
         this.scanner = new Scanner(System.in);
     }
 
+    /* ======================= Input / Output ======================= */
+
     /**
-     * Prompts user for their input and captures it
+     * Prompts user for their input and captures it.
      *
      * @return user input as a string
      */
@@ -46,33 +51,32 @@ public class Ui {
         return scanner.nextLine();
     }
 
-    /**
-     * Prints welcome message and instructions
-     */
+    /** Prints welcome message and instructions. */
     public void welcomeMessage() {
-        System.out.println("Hello! I'm " + name + ".");
-        System.out.println(greeting + "\n");
+        System.out.println("Hello! I'm " + NAME + ".");
+        System.out.println(GREETING + "\n");
         System.out.println("Instructions: ");
-        System.out.println("> " + instructionBye);
-        System.out.println("> " + instructionList);
-        System.out.println("> " + instructionMark);
-        System.out.println("> " + instructionUnmark);
-        System.out.println("> " + instructionDelete);
-        System.out.println("> " + instructionTodo);
-        System.out.println("> " + instructionDeadline);
-        System.out.println("> " + instructionEvent);
+        System.out.println("> " + INSTRUCTION_BYE);
+        System.out.println("> " + INSTRUCTION_LIST);
+        System.out.println("> " + INSTRUCTION_MARK);
+        System.out.println("> " + INSTRUCTION_UNMARK);
+        System.out.println("> " + INSTRUCTION_DELETE);
+        System.out.println("> " + INSTRUCTION_TODO);
+        System.out.println("> " + INSTRUCTION_DEADLINE);
+        System.out.println("> " + INSTRUCTION_EVENT);
         System.out.println();
     }
 
-    /**
-     * Prints exit message
-     */
+    /** Prints exit message. */
     public void exitMessage() {
-        System.out.println("\n" + exit);
+        System.out.println("\n" + EXIT);
     }
 
     /**
-     * Prints welcome message and instructions
+     * Prints acknowledgement after adding a task.
+     *
+     * @param task        the task added
+     * @param totalTasks  current number of tasks
      */
     public void addMessage(Task task, int totalTasks) {
         System.out.println("Got it. I've added this task:");
@@ -81,9 +85,9 @@ public class Ui {
     }
 
     /**
-     * Shows list of tasks
+     * Shows list of tasks.
      *
-     * @param tasks ArrayList of tasks.
+     * @param tasks ArrayList of tasks
      */
     public void showList(ArrayList<Task> tasks) {
         System.out.println("\nHere is your list of tasks:");
@@ -121,7 +125,11 @@ public class Ui {
         System.out.println("Now you have " + size + " tasks in the list.\n");
     }
 
-    // Method 8: display all task(s) with description including keyword
+    /**
+     * Displays tasks whose descriptions contain the keyword.
+     *
+     * @param matches the matching tasks
+     */
     public void showFound(ArrayList<Task> matches) {
         System.out.println("\nHere are the matching tasks in your list:");
         for (int i = 0; i < matches.size(); i++) {
@@ -131,7 +139,7 @@ public class Ui {
     }
 
     /**
-     * Prints error message due to thrown Conversal Exception
+     * Prints an error message.
      *
      * @param message the message to be printed out
      */
@@ -139,18 +147,38 @@ public class Ui {
         System.out.println(message + "\n");
     }
 
-    // Method 10: close scanner
+    /** Closes the scanner resource. */
     public void close() {
         scanner.close();
     }
 
-    // Method: getters
-    public String getInstructionFind()      { return instructionFind; }
-    public String getInstructionMark()      { return instructionMark; }
-    public String getInstructionUnmark()    { return instructionUnmark; }
-    public String getInstructionDelete()    { return instructionDelete; }
-    public String getInstructionTodo()      { return instructionTodo; }
-    public String getInstructionDeadline()  { return instructionDeadline; }
-    public String getInstructionEvent()     { return instructionEvent; }
+    /* ======================= Getters for instruction strings ======================= */
 
+    public String getInstructionFind() {
+        return INSTRUCTION_FIND;
+    }
+
+    public String getInstructionMark() {
+        return INSTRUCTION_MARK;
+    }
+
+    public String getInstructionUnmark() {
+        return INSTRUCTION_UNMARK;
+    }
+
+    public String getInstructionDelete() {
+        return INSTRUCTION_DELETE;
+    }
+
+    public String getInstructionTodo() {
+        return INSTRUCTION_TODO;
+    }
+
+    public String getInstructionDeadline() {
+        return INSTRUCTION_DEADLINE;
+    }
+
+    public String getInstructionEvent() {
+        return INSTRUCTION_EVENT;
+    }
 }
