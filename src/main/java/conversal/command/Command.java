@@ -1,15 +1,30 @@
 package conversal.command;
 
-import conversal.task.TaskList;
-import conversal.storage.Storage;
-import conversal.ui.Ui;
 import conversal.exception.ConversalException;
+import conversal.storage.Storage;
+import conversal.task.TaskList;
+import conversal.ui.Ui;
 
-// conversal.command.Command interface on which all other commands are built on
+/**
+ * Represents a user command that can be executed against the current task list,
+ * storage, and UI. Implementations perform the actual action for the command.
+ */
 public interface Command {
-    // Method 1: execute the correct action
+
+    /**
+     * Executes this command using the provided collaborators.
+     *
+     * @param tasks   the task list to read or modify
+     * @param storage the storage component for persistence
+     * @param ui      the UI used to show messages to the user
+     * @throws ConversalException if command execution fails
+     */
     void execute(TaskList tasks, Storage storage, Ui ui) throws ConversalException;
 
-    // Method 2: return true if command is to exit chatbot
+    /**
+     * Returns {@code true} if executing this command should terminate the app.
+     *
+     * @return true to exit; false otherwise
+     */
     boolean isExit();
 }

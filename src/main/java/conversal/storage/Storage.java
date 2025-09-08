@@ -1,25 +1,24 @@
 package conversal.storage;
 
-import conversal.task.Event;
-import conversal.task.Task;
-import conversal.task.Todo;
-import conversal.task.Deadline;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.time.LocalDate;
+
+import conversal.task.Deadline;
+import conversal.task.Event;
+import conversal.task.Task;
+import conversal.task.Todo;
 
 /**
- * Handles the saving and loading of tasks to and from hard disc
+ * Handles the saving and loading of tasks to and from the hard disk.
  *
- * The Storage class reads and writes task data to a text file.
- *
+ * <p>The Storage class reads and writes task data to a text file.</p>
  */
 public class Storage {
-    private String filePath;
+    private final String filePath;
 
     /**
      * Creates a new Storage object that will load from and save to
@@ -34,15 +33,18 @@ public class Storage {
     /**
      * Loads tasks from the file into memory.
      *
-     * If the file does not exist, an empty list is returned.
-     * Each line in the file is expected to be in the format:
+     * <p>If the file does not exist, an empty list is returned.
+     * Each line in the file is expected to be in the format:</p>
      *
+     * <pre>
      * T | isDone | description
      * D | isDone | description | yyyy-MM-dd
      * E | isDone | description | start-end
+     * </pre>
      *
      * @return an ArrayList of tasks reconstructed from the file
      */
+    @SuppressWarnings("checkstyle:Indentation")
     public ArrayList<Task> load() {
         ArrayList<Task> loadedTasks = new ArrayList<>();
         File file = new File(filePath);
@@ -52,10 +54,7 @@ public class Storage {
             return loadedTasks;
         }
 
-        try {
-            Scanner scanner = new Scanner(file);
-
-            // For each data entry
+        try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
                 String[] parts = line.split(" \\| ");
@@ -77,15 +76,12 @@ public class Storage {
                         break;
                 }
 
-                // Add completion status
                 if (isDone) {
                     newTask.markAsComplete();
                 }
 
                 loadedTasks.add(newTask);
             }
-            scanner.close();
-
         } catch (IOException e) {
             System.out.println("Unable to load task: " + e.getMessage());
         }
@@ -96,12 +92,14 @@ public class Storage {
     /**
      * Saves the given list of tasks to the file.
      *
-     * The file will be created if it does not exist.
-     * Each task will added in the following format:
+     * <p>The file will be created if it does not exist.
+     * Each task will be added in the following format:</p>
      *
+     * <pre>
      * T | isDone | description
      * D | isDone | description | yyyy-MM-dd
      * E | isDone | description | start-end
+     * </pre>
      *
      * @param tasks the list of tasks to save
      */
@@ -109,32 +107,30 @@ public class Storage {
         try {
             File file = new File(this.filePath);
 
-            // Create the new directory if directory does not exist
+            // Create the directory if it does not exist
             File parentDir = file.getParentFile();
             if (parentDir != null && !parentDir.exists()) {
                 parentDir.mkdirs();
             }
 
-            // Write to created file
-            FileWriter fw = new FileWriter(file);
-            for (Task task : tasks) {
-                String type = "T"; // Default is Todo
-                String description = task.getDescription();
-                String isDone = task.isDone() ? "1" : "0";
-                String info = "";
+            try (FileWriter fw = new FileWriter(file)) {
+                for (Task task : tasks) {
+                    String type = "T"; // Default is Todo
+                    String description = task.getDescription();
+                    String isDone = task.isDone() ? "1" : "0";
+                    String info = "";
 
-                if (task instanceof Deadline) {
-                    type = "D";
-                    info = " | " + ((Deadline) task).getDueDate().toString();
-                } else if (task instanceof Event) {
-                    type = "E";
-                    info = " | " + ((Event) task).getSchedule();
+                    if (task instanceof Deadline) {
+                        type = "D";
+                        info = " | " + ((Deadline) task).getDueDate();
+                    } else if (task instanceof Event) {
+                        type = "E";
+                        info = " | " + ((Event) task).getSchedule();
+                    }
+
+                    fw.write(type + " | " + isDone + " | " + description + info + System.lineSeparator());
                 }
-
-                fw.write(type + " | " + isDone + " | " + description + info + System.lineSeparator());
             }
-            fw.close();
-
         } catch (IOException e) {
             System.out.println("Unable to save task: " + e.getMessage());
         }

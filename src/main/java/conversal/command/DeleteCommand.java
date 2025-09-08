@@ -1,22 +1,36 @@
 package conversal.command;
 
+import conversal.exception.ConversalException;
 import conversal.storage.Storage;
 import conversal.task.Task;
 import conversal.task.TaskList;
 import conversal.ui.Ui;
-import conversal.exception.ConversalException;
 
-// Delete Command to delete task
+/**
+ * Represents a command that deletes a task from the task list.
+ */
 public class DeleteCommand implements Command {
 
-    // Fields
-    private String input;
+    private final String input;
 
-    // Constructor
+    /**
+     * Constructs a {@code DeleteCommand} with the given user input.
+     *
+     * @param input full command string containing the task index to delete
+     */
     public DeleteCommand(String input) {
         this.input = input;
     }
 
+    /**
+     * Executes the delete command: removes the task at the given index,
+     * saves the task list, and shows a confirmation via the UI.
+     *
+     * @param tasks   task list to modify
+     * @param storage storage to persist changes
+     * @param ui      UI component to display messages
+     * @throws ConversalException if the input format is invalid
+     */
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws ConversalException {
         if (input.length() <= 7) {

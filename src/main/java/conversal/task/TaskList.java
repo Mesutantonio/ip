@@ -1,19 +1,17 @@
 package conversal.task;
 
-import conversal.exception.ConversalException;
-
 import java.util.ArrayList;
+
+import conversal.exception.ConversalException;
 
 /**
  * Represents a list of tasks in the Conversal chatbot.
  *
- * Provides operations to add, delete, find, mark, and unmark tasks.
- * Also includes operation to check the current size of the list and return list itself
- *
+ * <p>Provides operations to add, delete, find, mark, and unmark tasks.
+ * Also includes operations to check the current size of the list and return the list itself.</p>
  */
 public class TaskList {
 
-    // Fields
     private final ArrayList<Task> tasks;
 
     /**
@@ -106,7 +104,12 @@ public class TaskList {
         return this.tasks.size();
     }
 
-    // Method 8: find task(s) by searching for keyword in description
+    /**
+     * Finds all tasks whose descriptions contain the given keyword.
+     *
+     * @param keyword the keyword to search for (case-insensitive)
+     * @return a list of matching tasks
+     */
     public ArrayList<Task> find(String keyword) {
         ArrayList<Task> result = new ArrayList<>();
         String k = keyword.toLowerCase();
@@ -117,5 +120,4 @@ public class TaskList {
         }
         return result;
     }
-
 }
