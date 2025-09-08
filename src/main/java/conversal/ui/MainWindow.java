@@ -19,8 +19,7 @@ public class MainWindowController {
 
     public void setConversal(Conversal conversal) {
         this.conversal = conversal;
-        dialogContainer.heightProperty().addListener((obs, oldV, newV)
-                -> scrollPane.setVvalue(1.0));
+        dialogContainer.heightProperty().addListener((obs, oldV, newV) -> scrollPane.setVvalue(1.0));
     }
 
     @FXML
