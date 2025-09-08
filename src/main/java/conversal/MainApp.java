@@ -10,9 +10,26 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * JavaFX entry point of the Conversal application.
+ *
+ * Responsible for initialising the main logic ({@link Conversal}) and
+ * setting up the primary stage with the main FXML layout.
+ *
+ */
 public class MainApp extends Application {
     private Conversal conversal;
 
+    /**
+     * Called by the JavaFX runtime to start the application.
+     * <p>
+     * Loads the main window from FXML, connects the controller to the
+     * {@link Conversal} core instance, and displays the stage.
+     * </p>
+     *
+     * @param stage the primary stage provided by the JavaFX runtime
+     * @throws Exception if the FXML cannot be loaded
+     */
     @Override
     public void start(Stage stage) throws Exception {
         GuiUi ui = new GuiUi();
@@ -31,6 +48,6 @@ public class MainApp extends Application {
         stage.setScene(scene);
         stage.show();
 
-        controller.showConversal("Hello! I'm Conversal. What can I do for you?");
+        controller.showConversal("Hello! I'm Conversal, the task manager you deserve");
     }
 }
