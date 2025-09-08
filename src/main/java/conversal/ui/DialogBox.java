@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
  * A custom control representing a single dialog bubble in the chat window.
  * <p>
  * Each dialog consists of a text label and an avatar image.
- * A dialog can be displayed on the left (Conversal) or flipped to the right (user).
+ * A dialog can be displayed on the left (Conversal) or flipped to the right (User).
  * </p>
  */
 public class DialogBox extends HBox {
@@ -46,9 +46,9 @@ public class DialogBox extends HBox {
      * Used for user messages.
      */
     private void flip() {
-        var children = getChildren();
-        var first = children.remove(0);
-        children.add(first);
+        var tmp = javafx.collections.FXCollections.observableArrayList(this.getChildren());
+        java.util.Collections.reverse(tmp);
+        this.getChildren().setAll(tmp);
         setAlignment(Pos.TOP_RIGHT);
     }
 
