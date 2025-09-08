@@ -40,7 +40,7 @@ public class DialogBox extends HBox {
         return db;
     }
 
-    public static DialogBox botDialog(String text, Image img) {
+    public static DialogBox conversalDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 }
