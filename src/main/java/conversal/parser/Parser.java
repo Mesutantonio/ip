@@ -1,25 +1,31 @@
 package conversal.parser;
 
-import conversal.command.*;
+import conversal.command.ByeCommand;
+import conversal.command.Command;
+import conversal.command.DeadlineCommand;
+import conversal.command.DeleteCommand;
+import conversal.command.EventCommand;
+import conversal.command.FindCommand;
+import conversal.command.ListCommand;
+import conversal.command.MarkAsCompleteCommand;
+import conversal.command.MarkAsIncompleteCommand;
+import conversal.command.TodoCommand;
 import conversal.exception.ConversalException;
 
 /**
  * Deals with interpreting user input strings
  * and converting them into Command objects.
  *
- * The Parser takes the given input and decides
- * which is the appropriate command subclass to instantiate
- * If the input does not match any known command,
- * a Conversal Exception is thrown.
- *
+ * <p>The parser takes the given input and decides which command to instantiate.
+ * If the input does not match any known command, a {@code ConversalException} is thrown.</p>
  */
 public class Parser {
 
     /**
-     * Parses the user input and returns the corresponding Command.
+     * Parses the user input and returns the corresponding command.
      *
      * @param input the raw input string entered by the user
-     * @return the appropriate Command (subclass) object
+     * @return the appropriate {@link Command} to execute
      * @throws ConversalException if the input does not match any known command
      */
     public static Command parse(String input) throws ConversalException {
