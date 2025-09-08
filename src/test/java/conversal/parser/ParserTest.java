@@ -5,7 +5,6 @@ import conversal.command.Command;
 import conversal.command.DeadlineCommand;
 import conversal.command.DeleteCommand;
 import conversal.command.EventCommand;
-import conversal.command.FindCommand;
 import conversal.command.ListCommand;
 import conversal.command.MarkAsCompleteCommand;
 import conversal.command.MarkAsIncompleteCommand;
