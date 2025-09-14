@@ -23,6 +23,8 @@ public class Event extends Task {
      */
     public Event(String description, String start, String end) {
         super(description, TaskType.EVENT);
+        assert start != null && !start.isEmpty() : "start must not be empty or null";
+        assert end != null && !end.isEmpty() : "end must not be empty or null";
         this.start = start;
         this.end = end;
     }
@@ -33,6 +35,7 @@ public class Event extends Task {
      * @return a string combining the start and end times
      */
     public String getSchedule() {
+        assert start != null && end != null : "schedule parts must not be null";
         return (start + "-" + end);
     }
 
