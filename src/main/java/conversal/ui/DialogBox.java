@@ -11,10 +11,10 @@ import javafx.scene.layout.HBox;
 
 /**
  * A custom control representing a single dialog bubble in the chat window.
- * <p>
+ *
  * Each dialog consists of a text label and an avatar image.
  * A dialog can be displayed on the left (Conversal) or flipped to the right (User).
- * </p>
+ *
  */
 public class DialogBox extends HBox {
     @FXML private Label dialog;

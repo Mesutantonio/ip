@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 /**
  * A UI variant that temporarily stores output messages for display in the GUI.
- * <p>
+ *
  * Instead of printing to the console, this class stores lines in a buffer.
- * The line to be printed can then be retrieved using {@link #flush()} and shown
+ * The line to be printed can then be retrieved and shown
  * inside the GUI dialog boxes.
- * </p>
+ *
  */
 public class GuiUi extends Ui {
     private final StringBuilder out = new StringBuilder();

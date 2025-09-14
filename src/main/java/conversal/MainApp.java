@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 /**
  * JavaFX entry point of the Conversal application.
  *
- * Responsible for initialising the main logic ({@link Conversal}) and
+ * Responsible for initialising the main logic and
  * setting up the primary stage with the main FXML layout.
  *
  */
@@ -22,10 +22,9 @@ public class MainApp extends Application {
 
     /**
      * Called by the JavaFX runtime to start the application.
-     * <p>
+     *
      * Loads the main window from FXML, connects the controller to the
      * {@link Conversal} core instance, and displays the stage.
-     * </p>
      *
      * @param stage the primary stage provided by the JavaFX runtime
      * @throws Exception if the FXML cannot be loaded
