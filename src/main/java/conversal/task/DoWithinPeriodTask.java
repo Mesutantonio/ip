@@ -8,7 +8,7 @@ package conversal.task;
  *
  */
 public class DoWithinPeriodTask extends Task {
-    private String period; // e.g., "1hr", "2 days"
+    private String period;
 
     /**
      * Creates a DoWithinPeriodTask with a description and a period string.
