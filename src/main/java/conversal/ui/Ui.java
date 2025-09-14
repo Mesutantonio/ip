@@ -48,22 +48,42 @@ public class Ui {
         return scanner.nextLine();
     }
 
-    /** Prints welcome message and instructions. */
+    /** Calls greeting and instruction methods*/
     public void welcomeMessage() {
+        printGreeting();
+        printInstructions();
+    }
+
+    /** Prints welcome message */
+    private void printGreeting() {
         System.out.println("Hello! I'm " + NAME + ".");
         System.out.println(GREETING + "\n");
+    }
+
+    /** Prints instruction messages */
+    private void printInstructions() {
         System.out.println("Instructions: ");
-        System.out.println("> " + INSTRUCTION_BYE);
-        System.out.println("> " + INSTRUCTION_LIST);
-        System.out.println("> " + INSTRUCTION_MARK);
-        System.out.println("> " + INSTRUCTION_UNMARK);
-        System.out.println("> " + INSTRUCTION_DELETE);
-        System.out.println("> " + INSTRUCTION_TODO);
-        System.out.println("> " + INSTRUCTION_DEADLINE);
-        System.out.println("> " + INSTRUCTION_EVENT);
-        System.out.println("> " + INSTRUCTION_DOWITHIN);
+        for (String line : instructionLines()) {
+            System.out.println("> " + line);
+        }
         System.out.println();
     }
+
+    private java.util.List<String> instructionLines() {
+        return java.util.List.of(
+                INSTRUCTION_BYE,
+                INSTRUCTION_LIST,
+                INSTRUCTION_MARK,
+                INSTRUCTION_UNMARK,
+                INSTRUCTION_DELETE,
+                INSTRUCTION_TODO,
+                INSTRUCTION_DEADLINE,
+                INSTRUCTION_EVENT,
+                INSTRUCTION_DOWITHIN
+        );
+    }
+
+
 
     /** Prints exit message. */
     public void exitMessage() {
