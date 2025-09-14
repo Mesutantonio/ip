@@ -7,8 +7,8 @@ import conversal.exception.ConversalException;
 /**
  * Represents a list of tasks in the Conversal chatbot.
  *
- * <p>Provides operations to add, delete, find, mark, and unmark tasks.
- * Also includes operations to check the current size of the list and return the list itself.</p>
+ * Provides operations to add, delete, find, mark, and unmark tasks.
+ * Also includes operations to check the current size of the list and return the list itself.
  */
 public class TaskList {
 
@@ -20,7 +20,9 @@ public class TaskList {
      * @param tasks the list of tasks to initialise with
      */
     public TaskList(ArrayList<Task> tasks) {
+        assert tasks != null : "tasks list must not be null";
         this.tasks = tasks;
+        assert this.tasks.size() >= 0 : "size must be non-negative";
     }
 
     /**
@@ -29,8 +31,13 @@ public class TaskList {
      * @param task the task to add
      */
     public void addTask(Task task) {
+        assert task != null : "task to add must not be null";
+        int prevSize = tasks.size();
         this.tasks.add(task);
+        assert tasks.size() == prevSize + 1 : "size should increment by 1 after task is added";
+        assert tasks.get(tasks.size() - 1) == task : "latest task should be task";
     }
+
 
     /**
      * Deletes and returns the task at the given index.
@@ -43,7 +50,11 @@ public class TaskList {
         if (index < 0 || index >= tasks.size()) {
             throw new ConversalException("To delete a task, enter: delete (task number)");
         }
-        return this.tasks.remove(index);
+        int prevSize = tasks.size();
+        Task removed = this.tasks.remove(index);
+        assert removed != null : "remove() should return (to be deleted) task";
+        assert tasks.size() == prevSize - 1 : "size should decrement by 1 after task is deleted";
+        return removed;
     }
 
     /**
@@ -57,7 +68,9 @@ public class TaskList {
         if (index < 0 || index >= tasks.size()) {
             throw new ConversalException("Enter a valid task number between 1 and " + tasks.size());
         }
-        return this.tasks.get(index);
+        Task t = this.tasks.get(index);
+        assert t != null : "task in list cannot not be null";
+        return t;
     }
 
     /**
@@ -71,6 +84,7 @@ public class TaskList {
             throw new ConversalException("Enter a valid task number between 1 and " + tasks.size());
         }
         this.tasks.get(index).markAsComplete();
+        assert this.tasks.get(index).isDone() : "task should be marked complete";
     }
 
     /**
@@ -84,6 +98,7 @@ public class TaskList {
             throw new ConversalException("Enter a valid task number between 1 and " + tasks.size());
         }
         this.tasks.get(index).markAsIncomplete();
+        assert !this.tasks.get(index).isDone() : "task should be marked incomplete";
     }
 
     /**
@@ -92,6 +107,7 @@ public class TaskList {
      * @return the ArrayList of tasks
      */
     public ArrayList<Task> getList() {
+        assert tasks != null : "tasks list cannot not be null";
         return this.tasks;
     }
 
@@ -101,7 +117,9 @@ public class TaskList {
      * @return the size of the list
      */
     public int size() {
-        return this.tasks.size();
+        int s = this.tasks.size();
+        assert s >= 0 : "size must be non-negative";
+        return s;
     }
 
     /**
@@ -111,13 +129,17 @@ public class TaskList {
      * @return a list of matching tasks
      */
     public ArrayList<Task> find(String keyword) {
+        assert keyword != null : "keyword cannot not be null";
         ArrayList<Task> result = new ArrayList<>();
         String k = keyword.toLowerCase();
         for (Task t : tasks) {
-            if (t.getDescription().toLowerCase().contains(k)) {
+            assert t != null : "task in list cannot not be null";
+            String desc = t.getDescription();
+            if (desc.toLowerCase().contains(k)) {
                 result.add(t);
             }
         }
+        assert result != null : "result list cannot not be null";
         return result;
     }
 }

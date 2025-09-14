@@ -29,6 +29,7 @@ public class Parser {
      * @throws ConversalException if the input does not match any known command
      */
     public static Command parse(String input) throws ConversalException {
+        assert input != null : "input must not be null";
         if (input.equals("bye")) {
             return new ByeCommand();
         } else if (input.equals("list")) {

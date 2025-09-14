@@ -33,14 +33,12 @@ public class Storage {
     /**
      * Loads tasks from the file into memory.
      *
-     * <p>If the file does not exist, an empty list is returned.
-     * Each line in the file is expected to be in the format:</p>
+     * If the file does not exist, an empty list is returned.
+     * Each line in the file is expected to be in the format:
      *
-     * <pre>
      * T | isDone | description
      * D | isDone | description | yyyy-MM-dd
      * E | isDone | description | start-end
-     * </pre>
      *
      * @return an ArrayList of tasks reconstructed from the file
      */
@@ -58,30 +56,29 @@ public class Storage {
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
                 String[] parts = line.split(" \\| ");
+                assert parts.length >= 3 : "Each data line must have at least 3 parts";
 
                 boolean isDone = parts[1].equals("1");
                 Task newTask;
 
-                // Create correct task
                 switch (parts[0]) {
-                    case "D": // Deadline task
+                    case "D":
+                        assert parts.length >= 4 : "deadlines must include a date";
                         newTask = new Deadline(parts[2], LocalDate.parse(parts[3]));
                         break;
-                    case "E": // Event task
+                    case "E":
+                        assert parts.length >= 4 : "events must include schedule";
                         String[] subParts = parts[3].split("-", 2);
+                        assert subParts.length == 2 : "event schedule must be 'start-end'";
                         newTask = new Event(parts[2], subParts[0], subParts[1]);
                         break;
-                    default: // To-do task
+                    default:
                         newTask = new Todo(parts[2]);
-                        break;
                 }
-
-                if (isDone) {
-                    newTask.markAsComplete();
-                }
-
+                if (isDone) newTask.markAsComplete();
                 loadedTasks.add(newTask);
             }
+            assert loadedTasks != null : "loadedTasks must not be null after reading";
         } catch (IOException e) {
             System.out.println("Unable to load task: " + e.getMessage());
         }
@@ -92,14 +89,12 @@ public class Storage {
     /**
      * Saves the given list of tasks to the file.
      *
-     * <p>The file will be created if it does not exist.
-     * Each task will be added in the following format:</p>
+     * The file will be created if it does not exist.
+     * Each task will be added in the following format:
      *
-     * <pre>
      * T | isDone | description
      * D | isDone | description | yyyy-MM-dd
      * E | isDone | description | start-end
-     * </pre>
      *
      * @param tasks the list of tasks to save
      */
@@ -115,7 +110,15 @@ public class Storage {
 
             try (FileWriter fw = new FileWriter(file)) {
                 for (Task task : tasks) {
-                    String type = "T"; // Default is Todo
+                    assert task != null : "task to save must not be null";
+                    String type = "T";
+                    if (task instanceof Deadline) {
+                        type = "D";
+                    } else if (task instanceof Event) {
+                        type = "E";
+                    }
+                    assert type.equals("T") || type.equals("D") || type.equals("E") : "invalid task type";
+
                     String description = task.getDescription();
                     String isDone = task.isDone() ? "1" : "0";
                     String info = "";
