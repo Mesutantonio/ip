@@ -1,0 +1,4 @@
+T | 0 | hw
+W | 0 | in he | 1hr
+W | 0 | in task | 1 day
+W | 0 | task2 | 1hr
