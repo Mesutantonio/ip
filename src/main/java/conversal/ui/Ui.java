@@ -12,7 +12,7 @@ public class Ui {
 
     /*  Constants  */
 
-    private static final String NAME = "conversal.Conversal";
+    private static final String NAME = "Conversal";
     private static final String GREETING = "What can I do for you?";
     private static final String EXIT = "Bye! Hope to see you again!";
 
@@ -22,26 +22,23 @@ public class Ui {
     private static final String INSTRUCTION_MARK = "To mark task as Complete, enter: mark (task no.)";
     private static final String INSTRUCTION_UNMARK = "To mark task as Incomplete, enter: unmark (task no.)";
     private static final String INSTRUCTION_DELETE = "To delete a task: delete (task no.)";
-    private static final String INSTRUCTION_TODO = "To add conversal.task.Todo task, enter: todo (task)";
+    private static final String INSTRUCTION_TODO = "To add Todo task, enter: todo (task)";
     private static final String INSTRUCTION_DEADLINE =
-            "To add conversal.task.Deadline task, enter: deadline (task) /by (date in YYYY-MM-DD format)";
+            "To add Deadline task, enter: deadline (task) /by (date in YYYY-MM-DD format)";
     private static final String INSTRUCTION_EVENT =
-            "To add conversal.task.Event task, enter: event (task) /from (start) /to (end)";
-
-    /*  Fields  */
+            "To add Event task, enter: event (task) /from (start) /to (end)";
+    private static final String INSTRUCTION_DOWITHIN =
+            "To add DoWithinPeriod task, enter: do-within (task) /within (period)";
 
     private final Scanner scanner;
-
-    /*  Constructors */
 
     /** Creates a UI that reads from standard input. */
     public Ui() {
         this.scanner = new Scanner(System.in);
     }
 
-    /* Input / Output  */
-
     /**
+     *
      * Prompts user for their input and captures it.
      *
      * @return user input as a string
@@ -64,6 +61,7 @@ public class Ui {
         System.out.println("> " + INSTRUCTION_TODO);
         System.out.println("> " + INSTRUCTION_DEADLINE);
         System.out.println("> " + INSTRUCTION_EVENT);
+        System.out.println("> " + INSTRUCTION_DOWITHIN);
         System.out.println();
     }
 
@@ -152,8 +150,7 @@ public class Ui {
         scanner.close();
     }
 
-    /* Getters for instruction strings */
-
+    /** Getters for instruction strings **/
     public String getInstructionFind() {
         return INSTRUCTION_FIND;
     }
@@ -180,5 +177,9 @@ public class Ui {
 
     public String getInstructionEvent() {
         return INSTRUCTION_EVENT;
+    }
+
+    public String getInstructionDowithin() {
+        return INSTRUCTION_DOWITHIN;
     }
 }

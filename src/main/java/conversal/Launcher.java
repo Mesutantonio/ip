@@ -4,8 +4,6 @@ package conversal;
  * Launcher class to avoid the classpath issue when launching
  * a JavaFX application in certain environments.
  *
- * Delegates to {@link MainApp}, which contains the actual JavaFX application.
- *
  */
 public class Launcher {
 

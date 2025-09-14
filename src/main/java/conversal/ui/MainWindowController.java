@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
 /**
- * Controller for the main window in {@code MainWindow.fxml}.
+ * Controller for the main window
  *
  * Handles user interactions such as typing a message and clicking the Send button.
  * Displays user and Conversal messages in the dialog container, using {@link DialogBox}.
@@ -25,7 +25,7 @@ public class MainWindowController {
     private final Image conversalImage = new Image(this.getClass().getResourceAsStream("/images/DaConversal.png"));
 
     /**
-     * Inserts the {@link Conversal} instance into this controller.
+     * Inserts the instance into this controller.
      * Also configures the scroll pane to auto-scroll to the bottom when new content is added.
      *
      * @param conversal the core Conversal instance

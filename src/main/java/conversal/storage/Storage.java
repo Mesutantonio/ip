@@ -7,15 +7,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import conversal.task.Deadline;
-import conversal.task.Event;
-import conversal.task.Task;
-import conversal.task.Todo;
+import conversal.task.*;
 
 /**
  * Handles the saving and loading of tasks to and from the hard disk.
  *
- * <p>The Storage class reads and writes task data to a text file.</p>
+ * The Storage class reads and writes task data to a text file.
  */
 public class Storage {
     private final String filePath;
@@ -39,6 +36,7 @@ public class Storage {
      * T | isDone | description
      * D | isDone | description | yyyy-MM-dd
      * E | isDone | description | start-end
+     * W | isDone | description | period
      *
      * @return an ArrayList of tasks reconstructed from the file
      */
@@ -72,10 +70,17 @@ public class Storage {
                         assert subParts.length == 2 : "event schedule must be 'start-end'";
                         newTask = new Event(parts[2], subParts[0], subParts[1]);
                         break;
+                    case "W":
+                        assert parts.length >= 4 : "DoWithinPeriodTask must include a period";
+                        newTask = new DoWithinPeriodTask(parts[2], parts[3]);
+                        break;
                     default:
                         newTask = new Todo(parts[2]);
                 }
-                if (isDone) newTask.markAsComplete();
+
+                if (isDone) {
+                    newTask.markAsComplete();
+                }
                 loadedTasks.add(newTask);
             }
             assert loadedTasks != null : "loadedTasks must not be null after reading";
@@ -95,10 +100,12 @@ public class Storage {
      * T | isDone | description
      * D | isDone | description | yyyy-MM-dd
      * E | isDone | description | start-end
+     * W | isDone | description | period
      *
      * @param tasks the list of tasks to save
      */
     public void save(ArrayList<Task> tasks) {
+        assert tasks != null : "tasks list to save must not be null";
         try {
             File file = new File(this.filePath);
 
@@ -111,16 +118,8 @@ public class Storage {
             try (FileWriter fw = new FileWriter(file)) {
                 for (Task task : tasks) {
                     assert task != null : "task to save must not be null";
-                    String type = "T";
-                    if (task instanceof Deadline) {
-                        type = "D";
-                    } else if (task instanceof Event) {
-                        type = "E";
-                    }
-                    assert type.equals("T") || type.equals("D") || type.equals("E") : "invalid task type";
 
-                    String description = task.getDescription();
-                    String isDone = task.isDone() ? "1" : "0";
+                    String type = "T";
                     String info = "";
 
                     if (task instanceof Deadline) {
@@ -129,7 +128,15 @@ public class Storage {
                     } else if (task instanceof Event) {
                         type = "E";
                         info = " | " + ((Event) task).getSchedule();
+                    } else if (task instanceof DoWithinPeriodTask) {
+                        type = "W";
+                        info = " | " + ((DoWithinPeriodTask) task).getPeriod();
                     }
+                    assert type.equals("T") || type.equals("D") || type.equals("E") || type.equals("W")
+                            : "invalid task type";
+
+                    String description = task.getDescription();
+                    String isDone = task.isDone() ? "1" : "0";
 
                     fw.write(type + " | " + isDone + " | " + description + info + System.lineSeparator());
                 }

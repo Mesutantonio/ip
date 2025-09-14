@@ -7,7 +7,8 @@ package conversal.task;
 public enum TaskType {
     TODO("[T]"),
     DEADLINE("[D]"),
-    EVENT("[E]");
+    EVENT("[E]"),
+    DOWITHIN("[W]");
 
     private final String symbol;
 

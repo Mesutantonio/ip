@@ -1,15 +1,6 @@
 package conversal.parser;
 
-import conversal.command.ByeCommand;
-import conversal.command.Command;
-import conversal.command.DeadlineCommand;
-import conversal.command.DeleteCommand;
-import conversal.command.EventCommand;
-import conversal.command.FindCommand;
-import conversal.command.ListCommand;
-import conversal.command.MarkAsCompleteCommand;
-import conversal.command.MarkAsIncompleteCommand;
-import conversal.command.TodoCommand;
+import conversal.command.*;
 import conversal.exception.ConversalException;
 
 /**
@@ -48,6 +39,8 @@ public class Parser {
             return new DeadlineCommand(input);
         } else if (input.startsWith("event ")) {
             return new EventCommand(input);
+        } else if (input.startsWith("do-within ")) {
+            return new DoWithinCommand(input);
         } else {
             throw new ConversalException("I can't seem to locate the issue, please try again!");
         }

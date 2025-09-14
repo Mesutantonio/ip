@@ -12,7 +12,7 @@ import conversal.ui.Ui;
  *
  * Initialises core components (UI, storage, task list) and runs
  * the main input-processing loop until the user exits.
- * Also displays a GUI-friendly single-turn API via {@link #getResponse(String)}.
+ * Also displays a GUI-friendly single-turn API.
  *
  */
 public class Conversal {
