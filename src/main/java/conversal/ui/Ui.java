@@ -69,6 +69,7 @@ public class Ui {
         System.out.println();
     }
 
+    /** helpers */
     private java.util.List<String> instructionLines() {
         return java.util.List.of(
                 INSTRUCTION_BYE,
