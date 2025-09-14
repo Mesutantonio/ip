@@ -47,6 +47,7 @@ public class MainApp extends Application {
         stage.setScene(scene);
         stage.show();
 
-        controller.showConversal("Hello! I'm Conversal, the task manager you deserve");
+        ui.welcomeMessage();
+        controller.showConversal(ui.flush());
     }
 }

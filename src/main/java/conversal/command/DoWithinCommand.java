@@ -47,15 +47,15 @@ public class DoWithinCommand implements Command {
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws ConversalException {
         if (input.length() <= 10) {
-            throw new ConversalException("Ah, I got it! " + ui.getInstructionDowithin());
+            throw new ConversalException("Ah, I got it! " + ui.getInstructionDoWithin());
         }
         if (!input.contains(" /within ")) {
-            throw new ConversalException("Ah, I got it! " + ui.getInstructionDowithin());
+            throw new ConversalException("Ah, I got it! " + ui.getInstructionDoWithin());
         }
 
         String[] info = input.substring(10).split(" /within ");
         if (info.length < 2 || info[0].trim().isEmpty() || info[1].trim().isEmpty()) {
-            throw new ConversalException("Ah, I got it! " + ui.getInstructionDowithin());
+            throw new ConversalException("Ah, I got it! " + ui.getInstructionDoWithin());
         }
 
         Task t = new DoWithinPeriodTask(info[0], info[1]);

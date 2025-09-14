@@ -32,7 +32,11 @@ public class GuiUi extends Ui {
         return s;
     }
 
-    @Override public void welcomeMessage() { line("Hello! I'm Conversal."); }
+    @Override
+    public void welcomeMessage() {
+        line(composeWelcomeText());
+    }
+
     @Override public void exitMessage() { line("Bye! Hope to see you again!"); }
 
     @Override public void addMessage(Task task, int totalTasks) {

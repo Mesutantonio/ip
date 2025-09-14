@@ -84,7 +84,17 @@ public class Ui {
         );
     }
 
-
+    /** Returns the greeting + instructions as a single String (for GUI) */
+    public String composeWelcomeText() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Hello! I'm ").append(NAME).append(".\n");
+        sb.append(GREETING).append("\n\n");
+        sb.append("Instructions: \n");
+        for (String line : instructionLines()) {
+            sb.append("> ").append(line).append("\n");
+        }
+        return sb.toString();
+    }
 
     /** Prints exit message. */
     public void exitMessage() {
@@ -200,7 +210,7 @@ public class Ui {
         return INSTRUCTION_EVENT;
     }
 
-    public String getInstructionDowithin() {
+    public String getInstructionDoWithin() {
         return INSTRUCTION_DOWITHIN;
     }
 }
