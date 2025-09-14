@@ -49,7 +49,7 @@ public class Parser {
         } else if (input.startsWith("event ")) {
             return new EventCommand(input);
         } else if (input.startsWith("within ")) {
-                return new DoWithinCommand(input);
+            return new DoWithinCommand(input);
         } else {
             throw new ConversalException("I can't seem to locate the issue, please try again!");
         }
