@@ -21,27 +21,29 @@ public class Parser {
      */
     public static Command parse(String input) throws ConversalException {
         assert input != null : "input must not be null";
-        if (input.equals("bye")) {
+        String[] parts = input.split(" ", 2);
+        String commandWord = parts[0];
+
+        switch (commandWord) {
+        case "bye":
             return new ByeCommand();
-        } else if (input.equals("list")) {
+        case "list":
             return new ListCommand();
-        } else if (input.startsWith("find ")) {
-            return new FindCommand(input);
-        } else if (input.startsWith("mark ")) {
+        case "mark":
             return new MarkAsCompleteCommand(input);
-        } else if (input.startsWith("unmark ")) {
+        case "unmark":
             return new MarkAsIncompleteCommand(input);
-        } else if (input.startsWith("delete ")) {
+        case "delete":
             return new DeleteCommand(input);
-        } else if (input.startsWith("todo ")) {
+        case "todo":
             return new TodoCommand(input);
-        } else if (input.startsWith("deadline ")) {
+        case "deadline":
             return new DeadlineCommand(input);
-        } else if (input.startsWith("event ")) {
+        case "event":
             return new EventCommand(input);
-        } else if (input.startsWith("do-within ")) {
+        case "do-within":
             return new DoWithinCommand(input);
-        } else {
+        default:
             throw new ConversalException("I can't seem to locate the issue, please try again!");
         }
     }
