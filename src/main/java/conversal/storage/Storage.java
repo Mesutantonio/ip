@@ -45,7 +45,6 @@ public class Storage {
         ArrayList<Task> loadedTasks = new ArrayList<>();
         File file = new File(filePath);
 
-        // If file does not exist, return empty list
         if (!file.exists()) {
             return loadedTasks;
         }
@@ -53,35 +52,10 @@ public class Storage {
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
-                String[] parts = line.split(" \\| ");
-                assert parts.length >= 3 : "Each data line must have at least 3 parts";
-
-                boolean isDone = parts[1].equals("1");
-                Task newTask;
-
-                switch (parts[0]) {
-                    case "D":
-                        assert parts.length >= 4 : "deadlines must include a date";
-                        newTask = new Deadline(parts[2], LocalDate.parse(parts[3]));
-                        break;
-                    case "E":
-                        assert parts.length >= 4 : "events must include schedule";
-                        String[] subParts = parts[3].split("-", 2);
-                        assert subParts.length == 2 : "event schedule must be 'start-end'";
-                        newTask = new Event(parts[2], subParts[0], subParts[1]);
-                        break;
-                    case "W":
-                        assert parts.length >= 4 : "DoWithinPeriodTask must include a period";
-                        newTask = new DoWithinPeriodTask(parts[2], parts[3]);
-                        break;
-                    default:
-                        newTask = new Todo(parts[2]);
+                Task task = parseLineToTask(line);
+                if (task != null) {
+                    loadedTasks.add(task);
                 }
-
-                if (isDone) {
-                    newTask.markAsComplete();
-                }
-                loadedTasks.add(newTask);
             }
             assert loadedTasks != null : "loadedTasks must not be null after reading";
         } catch (IOException e) {
@@ -89,6 +63,39 @@ public class Storage {
         }
 
         return loadedTasks;
+    }
+
+    /** Converts each line into a task. */
+    private Task parseLineToTask(String line) {
+        String[] parts = line.split(" \\| ");
+        assert parts.length >= 3 : "Each data line must have at least 3 parts";
+
+        boolean isDone = parts[1].equals("1");
+        Task task = createTaskFromParts(parts);
+
+        if (task != null && isDone) {
+            task.markAsComplete();
+        }
+        return task;
+    }
+
+    /** Constructs a Task instance from the parts of each line */
+    private Task createTaskFromParts(String[] parts) {
+        switch (parts[0]) {
+        case "D":
+            assert parts.length >= 4 : "deadlines must include a date";
+            return new Deadline(parts[2], LocalDate.parse(parts[3]));
+        case "E":
+            assert parts.length >= 4 : "events must include schedule";
+            String[] subParts = parts[3].split("-", 2);
+            assert subParts.length == 2 : "event schedule must be 'start-end'";
+            return new Event(parts[2], subParts[0], subParts[1]);
+        case "W":
+            assert parts.length >= 4 : "DoWithinPeriodTask must include a period";
+            return new DoWithinPeriodTask(parts[2], parts[3]);
+        default:
+            return new Todo(parts[2]);
+        }
     }
 
     /**
