@@ -78,18 +78,17 @@ public class Conversal {
             Command cmd = Parser.parse(input);
             cmd.execute(tasks, storage, ui);
 
-            // If UI is a GUI buffer (e.g., GuiUi with flush()), return buffered text.
+            // If UI is a GUI buffer (e.g. GuiUi with flush()), return buffered text.
             if (ui instanceof conversal.ui.GuiUi) {
                 return ((conversal.ui.GuiUi) ui).flush();
             }
-            // Fallback when using plain Ui (e.g., in tests)
+            // Fallback when using plain Ui (e.g. in tests)
             return "OK.";
         } catch (ConversalException e) {
             return e.toString();
         }
     }
 
-    // Optional accessors (handy for tests/controllers)
     public Ui getUi() { return ui; }
     public Storage getStorage() { return storage; }
     public TaskList getTasks() { return tasks; }
