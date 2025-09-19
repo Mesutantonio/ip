@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ParserTest {
 
     /** Positive routing tests */
-
     @Test
     void parse_bye_returnsByeCommand() throws ConversalException {
         Command command = Parser.parse("bye");

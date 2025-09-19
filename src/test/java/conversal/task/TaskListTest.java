@@ -3,22 +3,39 @@ package conversal.task;
 import conversal.exception.ConversalException;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-// JUnit test for TaskList for Task operations (adding, deleting, marking and unmarking)
+/**
+ * Unit tests for {@link TaskList}.
+ *
+ * Ensures that core task operations behave correctly:
+ * <ul>
+ *     <li>Adding tasks increases size and preserves order</li>
+ *     <li>Getting tasks returns the correct one, or throws if invalid</li>
+ *     <li>Deleting tasks returns the removed task, updates size, or throws if invalid</li>
+ *     <li>Marking/unmarking tasks updates status correctly, or throws if invalid</li>
+ *     <li>Size and getList reflect the current state of the task list</li>
+ * </ul>
+ *
+ * Each test is on one behavior, with {@link ConversalException}
+ * expected to be thrown when indexes are out of range.
+ */
 class TaskListTest {
 
-    // Helper test: check if task status is visually updated
+    /** Helper: checks if the string form of a task shows it as complete. */
     private static boolean looksComplete(Task t) {
         String s = t.toString();
         return s.contains("[X]");
     }
+
+    /** Helper: checks if the string form of a task shows it as incomplete. */
     private static boolean looksIncomplete(Task t) {
         String s = t.toString();
         return s.contains("[ ]");
     }
 
-    // Test 1 - 2 : adding task(s)
+    /** Adding tasks */
     @Test
     void addTask_addOne_increasesSizeByOne() {
         TaskList list = new TaskList(new ArrayList<>());
@@ -37,7 +54,7 @@ class TaskListTest {
         assertSame(t2, list.get(1));
     }
 
-    // Test 3 - 4: getting task
+    /** Getting tasks */
     @Test
     void get_validIndex_returnsThatTask() throws ConversalException {
         TaskList list = new TaskList(new ArrayList<>());
@@ -50,10 +67,10 @@ class TaskListTest {
     void get_invalidIndex_throws() {
         TaskList list = new TaskList(new ArrayList<>());
         list.addTask(new Todo("only one"));
-        assertThrows(ConversalException.class, () -> list.get(1)); // out of bounds
+        assertThrows(ConversalException.class, () -> list.get(1));
     }
 
-    // Test 5 - 7: deleting task(s)
+    /** Deleting tasks */
     @Test
     void deleteTask_validIndex_returnsRemovedTask() throws ConversalException {
         TaskList list = new TaskList(new ArrayList<>());
@@ -83,7 +100,7 @@ class TaskListTest {
         assertThrows(ConversalException.class, () -> list.deleteTask(5));
     }
 
-    // Task 8 - 11: markTaskComplete and markTaskIncomplete
+    /** Marking Complete and Incomplete test */
     @Test
     void markTaskComplete_setsTaskToComplete() throws ConversalException {
         TaskList list = new TaskList(new ArrayList<>());
@@ -113,7 +130,7 @@ class TaskListTest {
         assertThrows(ConversalException.class, () -> list.markTaskIncomplete(0));
     }
 
-    // Test 12 - 13: size of Tasklist
+    /** Size and list test */
     @Test
     void size_returnsZeroForNewList() {
         TaskList list = new TaskList(new ArrayList<>());
@@ -121,7 +138,7 @@ class TaskListTest {
     }
 
     @Test
-    void getList_reflectsUnderlyingChanges() {
+    void getList_reflectsChanges() {
         TaskList list = new TaskList(new ArrayList<>());
         list.addTask(new Todo("x"));
         assertEquals(1, list.getList().size());
