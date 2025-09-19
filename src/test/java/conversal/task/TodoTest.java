@@ -19,28 +19,28 @@ class TodoTest {
     /** Constructor should set description */
     @Test
     void constructor_andGetters() {
-        Todo t = new Todo("read book");
-        assertEquals("read book", t.getDescription());
+        Todo t = new Todo("read newspaper");
+        assertEquals("read newspaper", t.getDescription());
         assertFalse(t.isDone());
-        assertEquals("[T][ ] read book", t.toString());
+        assertEquals("[T][ ] read newspaper", t.toString());
     }
 
     /** Marking complete should set {@code isDone=true} and show 'X' in {@code toString} */
     @Test
     void markComplete_thenToStringShowsX() {
-        Todo t = new Todo("read book");
+        Todo t = new Todo("read newspaper");
         t.markAsComplete();
         assertTrue(t.isDone());
-        assertEquals("[T][X] read book", t.toString());
+        assertEquals("[T][X] read newspaper", t.toString());
     }
 
     /** Marking incomplete should reset {@code isDone=false} and show a ' ' in {@code toString} */
     @Test
     void markIncomplete_resetsStatus() {
-        Todo t = new Todo("read book");
+        Todo t = new Todo("read newspaper");
         t.markAsComplete();
         t.markAsIncomplete();
         assertFalse(t.isDone());
-        assertEquals("[T][ ] read book", t.toString());
+        assertEquals("[T][ ] read newspaper", t.toString());
     }
 }
