@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  * - Mark/unmark toggles {@code isDone}
  * - {@code toString()} shows "(from: ... to: ...)"
  */
-class DoWithinPeriodTaskTest {
+class DoWithinTest {
 
     /** Constructor & Getters - String format is correct */
     @Test
