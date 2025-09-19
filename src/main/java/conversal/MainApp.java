@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * JavaFX entry point of the Conversal application.
+ * JavaFX entry point of the {@link Conversal} application.
  *
  * Responsible for initialising the main logic and
  * setting up the primary stage with the main FXML layout.
