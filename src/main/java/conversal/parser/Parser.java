@@ -1,6 +1,15 @@
 package conversal.parser;
 
-import conversal.command.*;
+import conversal.command.Command;
+import conversal.command.ByeCommand;
+import conversal.command.DeadlineCommand;
+import conversal.command.DeleteCommand;
+import conversal.command.DoWithinCommand;
+import conversal.command.EventCommand;
+import conversal.command.ListCommand;
+import conversal.command.MarkAsCompleteCommand;
+import conversal.command.MarkAsIncompleteCommand;
+import conversal.command.TodoCommand;
 import conversal.exception.ConversalException;
 
 /**
