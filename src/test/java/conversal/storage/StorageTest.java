@@ -1,6 +1,10 @@
 package conversal.storage;
 
-import conversal.task.*;
+import conversal.task.Task;
+import conversal.task.Todo;
+import conversal.task.Deadline;
+import conversal.task.Event;
+import conversal.task.DoWithinPeriodTask;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -8,7 +12,10 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Unit tests for {@link Storage}.
