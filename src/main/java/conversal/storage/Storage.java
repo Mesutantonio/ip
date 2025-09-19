@@ -44,7 +44,6 @@ public class Storage {
      *
      * @return an ArrayList of tasks reconstructed from the file
      */
-    @SuppressWarnings("checkstyle:Indentation")
     public ArrayList<Task> load() {
         ArrayList<Task> loadedTasks = new ArrayList<>();
         File file = new File(filePath);
@@ -117,43 +116,60 @@ public class Storage {
      */
     public void save(ArrayList<Task> tasks) {
         assert tasks != null : "tasks list to save must not be null";
-        try {
-            File file = new File(this.filePath);
+        File file = new File(this.filePath);
+        ensureParentDir(file);
 
-            // Create the directory if it does not exist
-            File parentDir = file.getParentFile();
-            if (parentDir != null && !parentDir.exists()) {
-                parentDir.mkdirs();
-            }
-
-            try (FileWriter fw = new FileWriter(file)) {
-                for (Task task : tasks) {
-                    assert task != null : "task to save must not be null";
-
-                    String type = "T";
-                    String info = "";
-
-                    if (task instanceof Deadline) {
-                        type = "D";
-                        info = " | " + ((Deadline) task).getDueDate();
-                    } else if (task instanceof Event) {
-                        type = "E";
-                        info = " | " + ((Event) task).getSchedule();
-                    } else if (task instanceof DoWithinPeriodTask) {
-                        type = "W";
-                        info = " | " + ((DoWithinPeriodTask) task).getPeriod();
-                    }
-                    assert type.equals("T") || type.equals("D") || type.equals("E") || type.equals("W")
-                            : "invalid task type";
-
-                    String description = task.getDescription();
-                    String isDone = task.isDone() ? "1" : "0";
-
-                    fw.write(type + " | " + isDone + " | " + description + info + System.lineSeparator());
-                }
+        try (FileWriter fw = new FileWriter(file)) {
+            for (Task task : tasks) {
+                assert task != null : "task to save must not be null";
+                fw.write(serialise(task));
             }
         } catch (IOException e) {
             System.out.println("Unable to save task: " + e.getMessage());
         }
+    }
+
+    /** Ensures the parent directory of the storage file exists. */
+    private void ensureParentDir(File file) {
+        File parentDir = file.getParentFile();
+        if (parentDir != null && !parentDir.exists()) {
+            parentDir.mkdirs();
+        }
+    }
+
+    /** Converts a Task to its line representation inside hard disc (with newline). */
+    private String serialise(Task task) {
+        String type = taskType(task);
+        String isDone = task.isDone() ? "1" : "0";
+        String description = task.getDescription();
+        String extra = extraDescription(task);
+
+        return type + " | " + isDone + " | " + description + extra + System.lineSeparator();
+    }
+
+    /** Determines the single-letter task type representation. */
+    private String taskType(Task task) {
+        if (task instanceof Deadline) {
+            return "D";
+        }
+        if (task instanceof Event) {
+            return "E";
+        }
+        if (task instanceof DoWithinPeriodTask) {
+            return "W";
+        }
+        return "T";
+    }
+
+    /** Returns the extra description for types that need it, or empty string. */
+    private String extraDescription(Task task) {
+        if (task instanceof Deadline) {
+            return " | " + ((Deadline) task).getDueDate();
+        } else if (task instanceof Event) {
+            return " | " + ((Event) task).getSchedule();
+        } else if (task instanceof DoWithinPeriodTask) {
+            return " | " + ((DoWithinPeriodTask) task).getPeriod();
+        }
+        return "";
     }
 }
