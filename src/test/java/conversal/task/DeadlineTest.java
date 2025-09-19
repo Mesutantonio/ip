@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  */
 class DeadlineTest {
 
-    /** Constructor & getters - String format is correct */
+    /** Constructor & getters - String format is correct. */
     @Test
     void constructorAndGetters() {
         LocalDate due = LocalDate.of(2025, 9, 18);

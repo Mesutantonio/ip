@@ -32,7 +32,7 @@ class StorageTest {
     @TempDir
     File tmpDir;
 
-    /** Create a Storage that reads/writes a file inside tmpDir */
+    /** Create a Storage that reads/writes a file inside tmpDir. */
     private Storage newStorage(String name) {
         return new Storage(new File(tmpDir, name).getPath());
     }
@@ -46,7 +46,7 @@ class StorageTest {
         assertTrue(loaded.isEmpty());
     }
 
-    /** Save and load all task types */
+    /** Save and load all task types. */
     @Test
     void saveAndLoadForallTypes() {
         Storage s = newStorage("tasks.txt");
@@ -85,7 +85,7 @@ class StorageTest {
         assertEquals("2 days", ((DoWithinPeriodTask) loaded.get(3)).getPeriod());
     }
 
-    /** Old file contents can be rewritten */
+    /** Old file contents can be rewritten. */
     @Test
     void oldFileContentRewrite() {
         Storage s = newStorage("overwrite.txt");
@@ -105,7 +105,7 @@ class StorageTest {
         assertEquals("Task C", loaded.get(1).getDescription());
     }
 
-    /** Complete/Incomplete status should survive save/load */
+    /** Complete/Incomplete status should survive save/load. */
     @Test
     void saveAndLoadPreservedForAllTypes() {
         Storage s = newStorage("done-flags.txt");

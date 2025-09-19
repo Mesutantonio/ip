@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  */
 class EventTest {
 
-    /** Constructor & Getters - String format is correct */
+    /** Constructor & Getters - String format is correct. */
     @Test
     void constructorAndGetters() {
         Event e = new Event("project meeting", "Mon 2pm", "4pm");
@@ -28,7 +28,7 @@ class EventTest {
         assertEquals("[E][ ] project meeting (from: Mon 2pm to: 4pm)", e.toString());
     }
 
-    /** Marking complete should update completion status and reflect in {@code toString} */
+    /** Marking complete should update completion status and reflect in {@code toString}. */
     @Test
     void markCompleteReflectedInToString() {
         Event e = new Event("Party", "10am", "1pm");
@@ -38,7 +38,7 @@ class EventTest {
         assertTrue(e.toString().startsWith("[E][X]"));
     }
 
-    /** Marking incomplete should update completion status and reflect in {@code toString} */
+    /** Marking incomplete should update completion status and reflect in {@code toString}. */
     @Test
     void markIncompleteResetsStatus() {
         Event e = new Event("Party", "10am", "1pm");

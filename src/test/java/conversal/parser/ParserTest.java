@@ -19,12 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Unit tests for {@link Parser}.
- * Ensures that valid user inputs return the correct command
+ * Ensures that valid user inputs return the correct command.
  * and invalid inputs throw a {@link ConversalException}.
  */
 class ParserTest {
 
-    /** Positive routing tests */
+    /** Positive routing tests. */
     @Test
     void parse_bye_returnsByeCommand() throws ConversalException {
         Command command = Parser.parse("bye");
@@ -79,7 +79,7 @@ class ParserTest {
         assertTrue(command instanceof DoWithinCommand);
     }
 
-    /** Negative routing tests */
+    /** Negative routing tests. */
     @Test
     void parse_unknown_throwsConversalException() {
         assertThrows(ConversalException.class, () -> Parser.parse("Blah"));

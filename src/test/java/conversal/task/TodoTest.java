@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  */
 class TodoTest {
 
-    /** Constructor should set description */
+    /** Constructor should set description. */
     @Test
     void constructor_andGetters() {
         Todo t = new Todo("read newspaper");
@@ -25,7 +25,7 @@ class TodoTest {
         assertEquals("[T][ ] read newspaper", t.toString());
     }
 
-    /** Marking complete should set {@code isDone=true} and show 'X' in {@code toString} */
+    /** Marking complete should set {@code isDone=true} and show 'X' in {@code toString}. */
     @Test
     void markComplete_thenToStringShowsX() {
         Todo t = new Todo("read newspaper");
@@ -34,7 +34,7 @@ class TodoTest {
         assertEquals("[T][X] read newspaper", t.toString());
     }
 
-    /** Marking incomplete should reset {@code isDone=false} and show a ' ' in {@code toString} */
+    /** Marking incomplete should reset {@code isDone=false} and show a ' ' in {@code toString}. */
     @Test
     void markIncomplete_resetsStatus() {
         Todo t = new Todo("read newspaper");

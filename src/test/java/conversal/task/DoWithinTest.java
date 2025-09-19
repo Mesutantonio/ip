@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  */
 class DoWithinTest {
 
-    /** Constructor & Getters - String format is correct */
+    /** Constructor & Getters - String format is correct. */
     @Test
     void constructor_getters_andToString() {
         DoWithinPeriodTask w = new DoWithinPeriodTask("finish homework", "2 days");
@@ -28,7 +28,7 @@ class DoWithinTest {
         assertEquals("[W][ ] finish homework (within: 2 days)", w.toString());
     }
 
-    /** Marking complete should update completion status and reflect in {@code toString} */
+    /** Marking complete should update completion status and reflect in {@code toString}. */
     @Test
     void markCompleteReflectedInToString() {
         DoWithinPeriodTask w = new DoWithinPeriodTask("exercise", "1 hr");
@@ -39,7 +39,7 @@ class DoWithinTest {
 
     }
 
-    /** Marking incomplete should update completion status and reflect in {@code toString} */
+    /** Marking incomplete should update completion status and reflect in {@code toString}. */
     @Test
     void markIncompleteResetsStatus() {
         DoWithinPeriodTask w = new DoWithinPeriodTask("exercise", "1 hr");

@@ -55,7 +55,7 @@ class TaskListTest {
         assertSame(t2, list.get(1));
     }
 
-    /** Getting tasks */
+    /** Getting tasks. */
     @Test
     void get_validIndex_returnsThatTask() throws ConversalException {
         TaskList list = new TaskList(new ArrayList<>());
@@ -71,7 +71,7 @@ class TaskListTest {
         assertThrows(ConversalException.class, () -> list.get(1));
     }
 
-    /** Deleting tasks */
+    /** Deleting tasks. */
     @Test
     void deleteTask_validIndex_returnsRemovedTask() throws ConversalException {
         TaskList list = new TaskList(new ArrayList<>());
