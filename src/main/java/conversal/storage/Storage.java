@@ -7,7 +7,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import conversal.task.*;
+import conversal.task.Deadline;
+import conversal.task.DoWithinPeriodTask;
+import conversal.task.Event;
+import conversal.task.Task;
+import conversal.task.Todo;
 
 /**
  * Handles the saving and loading of tasks to and from the hard disk.
