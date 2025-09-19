@@ -7,7 +7,8 @@ import conversal.ui.Ui;
 
 /**
  * Represents a user command that can be executed against the current task list,
- * storage, and UI. Implementations perform the actual action for the command.
+ * storage, and UI.
+ * Implementations perform the actual action for the command.
  */
 public interface Command {
 
