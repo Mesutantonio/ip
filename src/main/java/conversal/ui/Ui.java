@@ -38,7 +38,6 @@ public class Ui {
     }
 
     /**
-     *
      * Prompts user for their input and captures it.
      *
      * @return user input as a string

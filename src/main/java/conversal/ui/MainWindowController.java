@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
  * Controller for the main window
  *
  * Handles user interactions such as typing a message and clicking the Send button.
- * Displays user and Conversal messages in the dialog container, using {@link DialogBox}.
+ * Displays user and {@link Conversal}  messages in the dialog container, using {@link DialogBox}.
  *
  */
 public class MainWindowController {
@@ -21,8 +21,10 @@ public class MainWindowController {
 
     private Conversal conversal;
 
-    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private final Image conversalImage = new Image(this.getClass().getResourceAsStream("/images/DaConversal.png"));
+    private final Image userImage =
+            new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private final Image conversalImage =
+            new Image(this.getClass().getResourceAsStream("/images/DaConversal.png"));
 
     /**
      * Inserts the instance into this controller.
@@ -32,7 +34,9 @@ public class MainWindowController {
      */
     public void setConversal(Conversal conversal) {
         this.conversal = conversal;
-        dialogContainer.heightProperty().addListener((obs, oldV, newV) -> scrollPane.setVvalue(1.0));
+        dialogContainer.heightProperty()
+                .addListener((obs, oldV, newV)
+                        -> scrollPane.setVvalue(1.0));
     }
 
     /**
@@ -42,7 +46,9 @@ public class MainWindowController {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        if (input == null || input.isBlank()) return;
+        if (input == null || input.isBlank()) {
+            return;
+        }
 
         dialogContainer.getChildren().add(DialogBox.userDialog(input, userImage));
 
@@ -56,7 +62,7 @@ public class MainWindowController {
     }
 
     /**
-     * Displays an initial greeting or message from Conversal when the app starts.
+     * Displays an initial greeting or message from {@link Conversal} when the app starts.
      *
      * @param message the message text to display
      */
