@@ -43,7 +43,6 @@ class DoWithinPeriodTaskTest {
     @Test
     void markIncompleteResetsStatus() {
         DoWithinPeriodTask w = new DoWithinPeriodTask("exercise", "1 hr");
-
         w.markAsIncomplete();
         assertFalse(w.isDone());
         assertTrue(w.toString().startsWith("[W][ ]"));
