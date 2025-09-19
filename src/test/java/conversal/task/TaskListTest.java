@@ -10,13 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for {@link TaskList}.
  *
  * Ensures that core task operations behave correctly:
- * <ul>
- *     <li>Adding tasks increases size and preserves order</li>
- *     <li>Getting tasks returns the correct one, or throws if invalid</li>
- *     <li>Deleting tasks returns the removed task, updates size, or throws if invalid</li>
- *     <li>Marking/unmarking tasks updates status correctly, or throws if invalid</li>
- *     <li>Size and getList reflect the current state of the task list</li>
- * </ul>
+ * - Adding tasks increases size and preserves order
+ * - Getting tasks returns the correct one, or throws if invalid
+ * - Deleting tasks returns the removed task, updates size, or throws if invalid
+ * - Marking/unmarking tasks updates status correctly, or throws if invalid
+ * - Size and getList reflect the current state of the task list
  *
  * Each test is on one behavior, with {@link ConversalException}
  * expected to be thrown when indexes are out of range.
