@@ -20,7 +20,7 @@ class DeadlineTest {
 
     /** Constructor & getters - String format is correct */
     @Test
-    void constructor_getters_andFormattedToString() {
+    void constructorAndGetters() {
         LocalDate due = LocalDate.of(2025, 9, 18);
         Deadline d = new Deadline("return book", due);
 
@@ -32,7 +32,7 @@ class DeadlineTest {
 
     /** Marking complete should update completion status and reflect in {@code toString}. */
     @Test
-    void markComplete_reflectedInToString() {
+    void markCompleteReflectedInToString() {
         Deadline d = new Deadline("submit", LocalDate.of(2030, 1, 1));
         d.markAsComplete();
         assertTrue(d.isDone());
@@ -41,7 +41,7 @@ class DeadlineTest {
 
     /** Marking incomplete reverts flag and {@code toString}. */
     @Test
-    void markIncomplete_resetsStatus() {
+    void markIncompleteResetsStatus() {
         Deadline d = new Deadline("submit", LocalDate.of(2030, 1, 1));
         d.markAsComplete();
         d.markAsIncomplete();
