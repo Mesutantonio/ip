@@ -1,0 +1,6 @@
+T | 0 | homework
+T | 0 | homework
+T | 0 | test2
+T | 0 | test
+D | 0 | homework | 2025-09-05
+W | 0 | laundry | 3hrs

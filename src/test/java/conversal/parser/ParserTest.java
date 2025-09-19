@@ -4,6 +4,7 @@ import conversal.command.ByeCommand;
 import conversal.command.Command;
 import conversal.command.DeadlineCommand;
 import conversal.command.DeleteCommand;
+import conversal.command.DoWithinCommand;
 import conversal.command.EventCommand;
 import conversal.command.ListCommand;
 import conversal.command.MarkAsCompleteCommand;
@@ -22,6 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * and invalid inputs throw a {@link ConversalException}.
  */
 class ParserTest {
+
+    /** Positive routing tests */
 
     @Test
     void parse_bye_returnsByeCommand() throws ConversalException {
@@ -72,7 +75,24 @@ class ParserTest {
     }
 
     @Test
+    void parse_doWithin_returnsDoWithinCommand() throws ConversalException {
+        Command command = Parser.parse("do-within finish homework /within 2 days");
+        assertTrue(command instanceof DoWithinCommand);
+    }
+
+    /** Negative routing tests */
+    @Test
     void parse_unknown_throwsConversalException() {
         assertThrows(ConversalException.class, () -> Parser.parse("Blah"));
+    }
+
+    @Test
+    void parse_empty_throwsConversalException() {
+        assertThrows(ConversalException.class, () -> Parser.parse(""));
+    }
+
+    @Test
+    void parse_whitespaceOnly_throwsConversalException() {
+        assertThrows(ConversalException.class, () -> Parser.parse("   "));
     }
 }
