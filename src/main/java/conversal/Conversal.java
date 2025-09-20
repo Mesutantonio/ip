@@ -17,7 +17,6 @@ import conversal.ui.Ui;
  */
 public class Conversal {
 
-    // Fields
     private final Storage storage;
     private final TaskList tasks;
     private final Ui ui;

@@ -1,7 +1,8 @@
 package conversal.ui;
 
-import conversal.task.Task;
 import java.util.ArrayList;
+
+import conversal.task.Task;
 
 /**
  * A UI variant that temporarily stores output messages for display in the GUI.
@@ -19,7 +20,9 @@ public class GuiUi extends Ui {
      *
      * @param s the line to append
      */
-    private void line(String s) { out.append(s).append(System.lineSeparator()); }
+    private void line(String s) {
+        out.append(s).append(System.lineSeparator());
+    }
 
     /**
      * Returns the current contents of the buffer and clears it.
@@ -37,7 +40,9 @@ public class GuiUi extends Ui {
         line(composeWelcomeText());
     }
 
-    @Override public void exitMessage() { line("Bye! Hope to see you again!"); }
+    @Override public void exitMessage() {
+        line("Bye! Hope to see you again!");
+    }
 
     @Override public void addMessage(Task task, int totalTasks) {
         line("Got it. I've added this task:");
@@ -71,5 +76,7 @@ public class GuiUi extends Ui {
         }
     }
 
-    @Override public void printError(String message) { line(message); }
+    @Override public void printError(String message) {
+        line(message);
+    }
 }

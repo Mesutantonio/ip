@@ -1,12 +1,12 @@
 package conversal.task;
 
-import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Unit tests for {@link Deadline}.
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  */
 class DeadlineTest {
 
-    /** Constructor & getters - String format is correct. */
+    /** Constructor & getters - String format is correct */
     @Test
     void constructorAndGetters() {
         LocalDate due = LocalDate.of(2025, 9, 18);
