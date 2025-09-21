@@ -1,30 +1,120 @@
-# conversal.Conversal User Guide
+# Conversal User Guide
 
-// Update the title above to match the actual product name
+![Ui](Ui.png)
 
-// Product screenshot goes here
+Conversal is a chatbot-style task manager.  
 
-// Product intro goes here
+It helps you track tasks in four types: 
+- **Todo**
+- **Deadline**
+- **Event**
+- **DoWithinPeriod**
 
-## Adding deadlines
+All data is saved locally in `data/tasks.txt` and persists between sessions.  
+Commands are simple, text-based, and case-insensitive.
 
-// Describe the action and its outcome.
+# Feature 1: Adding Todo Task
+Adding a simple task without any date or time.
 
-// Give examples of usage
+Format:  
+`todo (task)`
 
-Example: `keyword (optional arguments)`
+Example:  
+`todo Fold laundry`
 
-// A description of the expected outcome goes here
-
+The task will appear in the list as `[T]` (Todo):
 ```
-expected output
+[T][ ] Fold laundry
 ```
 
-## Feature ABC
 
-// Feature details
+## Feature 2: Adding Deadline Task
+Adding a task with a due date.
+
+Format:  
+`deadline (task) /by (YYYY-MM-DD)`
+
+Example:  
+`deadline Return library book /by 2025-10-01`
+
+The task will appear as `[D]` (Deadline) with the due date:
+```
+[D][ ] Return library book (by: 2025-10-01)
+```
 
 
-## Feature XYZ
+## Feature 3: Adding Event Task
+Adding a task with a start and end time.
 
-// Feature details
+Format:  
+`event (task) /from (start) /to (end)`
+
+Example:  
+`event Project meeting /from Mon 2pm /to 4pm`
+
+The task will appear as `[E]` (Event):
+```
+[E][ ] Project meeting (from: Mon 2pm to: 4pm)
+```
+
+
+## Feature 4: Adding Do-Within-Period Task
+Adding a task to be completed within a certain period.
+
+Format:  
+`do-within (task) /within (period)`
+
+Example:  
+`do-within Submit report /within 2 days`
+
+The task will appear as `[W]` (Do-Within):
+```
+[W][ ] Submit report (within: 2 days)
+```
+
+
+## Feature 5: Mark Task as Complete
+Marking a task as done.
+
+Format:  
+`mark (task number)`
+
+Example:  
+`mark 2`
+
+The task changes to `[X]` (done):
+```
+1. [T][ ] Fold laundry  
+2. [D][X] Return library book (by: 2025-10-01)
+```
+
+
+## Feature 6: Mark Task as Incomplete
+Marking a completed task as not done.
+
+Format:  
+`unmark (task number)`
+
+Example:  
+`unmark 2`
+
+The task changes back to `[ ]` (not done):
+```
+1. [T][ ] Fold laundry  
+2. [D][ ] Return library book (by: 2025-10-01)
+```
+
+
+## Feature 7: Show Task List
+Viewing all current tasks in your list.
+
+Format:  
+`list`
+
+Expected output:
+```
+Here is your list of tasks:  
+1. [T][ ] Fold laundry  
+2. [D][ ] Return library book (by: 2025-10-01)  
+3. [E][ ] Project meeting (from: Mon 2pm to: 4pm)
+```
