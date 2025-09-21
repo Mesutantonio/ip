@@ -16,8 +16,8 @@ import conversal.exception.ConversalException;
  * Deals with interpreting user input strings
  * and converting them into Command objects.
  *
- * <p>The parser takes the given input and decides which command to instantiate.
- * If the input does not match any known command, a {@code ConversalException} is thrown.</p>
+ * The parser takes the given input and decides which command to instantiate.
+ * If the input does not match any known command, a {@code ConversalException} is thrown.
  */
 public class Parser {
 
@@ -31,7 +31,7 @@ public class Parser {
     public static Command parse(String input) throws ConversalException {
         assert input != null : "input must not be null";
         String[] parts = input.split(" ", 2);
-        String commandWord = parts[0];
+        String commandWord = parts[0].toLowerCase();
 
         switch (commandWord) {
         case "bye":
