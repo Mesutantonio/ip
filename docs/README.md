@@ -13,7 +13,48 @@ It helps you track tasks in four types:
 All data is saved locally in `data/tasks.txt` and persists between sessions.  
 Commands are simple, text-based, and case-insensitive.
 
-# Feature 1: Adding Todo Task
+
+## Running Conversal
+
+1. Make sure you have **Java 17** installed.  
+   Run this command to check:
+   ```bash
+   java -version
+   ```
+   Output should say something like:
+   ```
+   openjdk version "17.x"
+   ```
+
+2. Download the latest JAR file from the **Releases** section of this repo.
+
+3. Copy the JAR file into an empty folder.
+
+4. Open a terminal/command prompt in that folder.
+
+5. Run Conversal:
+   ```bash
+   java -jar conversal.jar
+   ```
+
+6. Start typing commands (e.g. `todo Homework`).
+
+
+## Features
+
+- Add Todo task
+- Add Deadline task (`/by`)
+- Add Event task (`/from ... /to ...`)
+- Add Do-Within task (`/within`)
+- List all tasks
+- Mark tasks as complete
+- Mark tasks as incomplete
+- Delete tasks
+- Find tasks by keyword
+- Exit the chatbot
+
+
+## Feature 1: Adding Todo Task
 Adding a simple task without any date or time.
 
 Format:  
