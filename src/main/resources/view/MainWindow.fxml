@@ -19,8 +19,10 @@
 
         <HBox spacing="8" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
             <padding><Insets top="8" right="10" bottom="8" left="10"/></padding>
-            <TextField fx:id="userInput" HBox.hgrow="ALWAYS" promptText="Type a message..."/>
-            <Button text="Send" onAction="#handleUserInput"/>
+            <TextField fx:id="userInput" HBox.hgrow="ALWAYS"
+                       promptText="Type a message..."
+                       onAction="#handleUserInput"/>
+            <Button text="Send" onAction="#handleUserInput" defaultButton="true"/>
         </HBox>
     </children>
 </AnchorPane>
