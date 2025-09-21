@@ -41,7 +41,7 @@ public class GuiUi extends Ui {
     }
 
     @Override public void exitMessage() {
-        line("Bye! Hope to see you again!");
+        line("Bye! Hope to see you again! Click the red X to exit!");
     }
 
     @Override public void addMessage(Task task, int totalTasks) {
