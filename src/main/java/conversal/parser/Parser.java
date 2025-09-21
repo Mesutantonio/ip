@@ -1,7 +1,7 @@
 package conversal.parser;
 
-import conversal.command.Command;
 import conversal.command.ByeCommand;
+import conversal.command.Command;
 import conversal.command.DeadlineCommand;
 import conversal.command.DeleteCommand;
 import conversal.command.DoWithinCommand;
