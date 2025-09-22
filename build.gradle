@@ -39,7 +39,7 @@ test {
 }
 
 application {
-    mainClass = 'conversal.Launcher'
+    mainClass.set("myduke.Launcher")
 }
 
 shadowJar {
