@@ -10,26 +10,34 @@ repositories {
     mavenCentral()
 }
 
+def fxVersion = '17.0.10'
+
 dependencies {
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.10.0'
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.10.0'
+    implementation "org.openjfx:javafx-controls:${fxVersion}"
+    implementation "org.openjfx:javafx-fxml:${fxVersion}"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly   'org.junit.jupiter:junit-jupiter-engine:5.10.0'
 }
 
 javafx {
-    version = '17.0.10'
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    version = fxVersion
+    modules = ['javafx.controls', 'javafx.fxml']
 }
 
-checkstyle {
-    toolVersion = '11.0.1'
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(17) }
 }
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+}
+
+checkstyle { toolVersion = '11.0.1' }
 
 test {
     useJUnitPlatform()
-
     testLogging {
         events "passed", "skipped", "failed"
-
         showExceptions true
         exceptionFormat "full"
         showCauses true
@@ -45,8 +53,10 @@ application {
 shadowJar {
     archiveBaseName = "conversal"
     archiveClassifier = null
+    // helps some JavaFX services load correctly when shaded
+    mergeServiceFiles()
 }
 
-run{
+run {
     standardInput = System.in
 }
