@@ -16,6 +16,22 @@ dependencies {
     implementation "org.openjfx:javafx-controls:${fxVersion}"
     implementation "org.openjfx:javafx-fxml:${fxVersion}"
 
+    runtimeOnly "org.openjfx:javafx-controls:${fxVersion}:win"
+    runtimeOnly "org.openjfx:javafx-controls:${fxVersion}:linux"
+    runtimeOnly "org.openjfx:javafx-controls:${fxVersion}:mac"
+
+    runtimeOnly "org.openjfx:javafx-base:${fxVersion}:win"
+    runtimeOnly "org.openjfx:javafx-base:${fxVersion}:linux"
+    runtimeOnly "org.openjfx:javafx-base:${fxVersion}:mac"
+
+    runtimeOnly "org.openjfx:javafx-graphics:${fxVersion}:win"
+    runtimeOnly "org.openjfx:javafx-graphics:${fxVersion}:linux"
+    runtimeOnly "org.openjfx:javafx-graphics:${fxVersion}:mac"
+
+    runtimeOnly "org.openjfx:javafx-fxml:${fxVersion}:win"
+    runtimeOnly "org.openjfx:javafx-fxml:${fxVersion}:linux"
+    runtimeOnly "org.openjfx:javafx-fxml:${fxVersion}:mac"
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
     testRuntimeOnly   'org.junit.jupiter:junit-jupiter-engine:5.10.0'
 }
@@ -53,7 +69,6 @@ application {
 shadowJar {
     archiveBaseName = "conversal"
     archiveClassifier = null
-    // helps some JavaFX services load correctly when shaded
     mergeServiceFiles()
 }
 
